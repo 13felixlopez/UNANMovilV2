@@ -23,9 +23,9 @@
                         <!--Imagen de User-->
                         <Image Source="User.png" HorizontalOptions="EndAndExpand" 
                            VerticalOptions="CenterAndExpand"/>
-                        <!--Entrada de para user-->
+                        <!--Entrada de para INSS-->
                         <Entry Grid.Column="1" Placeholder="INSS" FontAttributes="Bold" 
-                           FontSize="20" VerticalOptions="Center"
+                           FontSize="20" VerticalOptions="Center" Keyboard="Numeric"
                            HorizontalTextAlignment="Start" Margin="20,0,0,0" 
                            PlaceholderColor="Gray" x:Name="txtINSS" TextColor="Black"/>
                     </Grid>

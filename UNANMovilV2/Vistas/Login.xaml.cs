@@ -30,32 +30,40 @@ namespace UNANMovilV2.Vistas
 
         private async Task Logueo()
         {
-            DataTable dt=new DataTable();
-            mprofes.INSS = int.Parse(txtINSS.Text);
-            mprofes.Password = Encrip.Encriptar(Encrip.Encriptar(txtPass.Text));
-            try
+            if (string.IsNullOrEmpty(txtINSS.Text) || string.IsNullOrEmpty(txtPass.Text))
             {
-                dt = nprofes.Nprofe(mprofes);
-                if (dt.Rows.Count>0)
-                {
-                    idprofesor = Convert.ToInt32(dt.Rows[0][0]);
-                    nombreprofe = dt.Rows[0][1].ToString();
-                    Icono = (byte[])dt.Rows[0][3];
-                    correo = dt.Rows[0][5].ToString();
-                    Tusuario = dt.Rows[0][6].ToString();
-                    INSS = int.Parse(dt.Rows[0][2].ToString());
-                    await Navigation.PushAsync(new Menu());
-                    txtINSS.Text = "";
-                    txtPass.Text = "";
-                }
-                else
-                {
-                    await DisplayAlert("ERROR", "Usuario o Contraseña Incorrectos", "Ok");
-                }
+                await DisplayAlert("ERROR", "Los campos estan vacios", "OK");
             }
-            catch (Exception ex)
+            else
             {
-                await DisplayAlert("ERROR", ex.Message, "OK");
+
+                DataTable dt = new DataTable();
+                mprofes.INSS = int.Parse(txtINSS.Text);
+                mprofes.Password = Encrip.Encriptar(Encrip.Encriptar(txtPass.Text));
+                try
+                {
+                    dt = nprofes.Nprofe(mprofes);
+                    if (dt.Rows.Count > 0)
+                    {
+                        idprofesor = Convert.ToInt32(dt.Rows[0][0]);
+                        nombreprofe = dt.Rows[0][1].ToString();
+                        Icono = (byte[])dt.Rows[0][3];
+                        correo = dt.Rows[0][5].ToString();
+                        Tusuario = dt.Rows[0][6].ToString();
+                        INSS = int.Parse(dt.Rows[0][2].ToString());
+                        await Navigation.PushAsync(new Menu());
+                        txtINSS.Text = "";
+                        txtPass.Text = "";
+                    }
+                    else
+                    {
+                        await DisplayAlert("ERROR", "INSS o Contraseña Incorrectos", "Ok");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("ERROR", ex.Message, "OK");
+                }
             }
         }
     }
