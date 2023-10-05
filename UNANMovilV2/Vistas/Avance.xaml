@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UNANMovilV2.Vistas.Avance" 
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid RowDefinitions="80,750">
+                <!--Titulo-->
+                <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
+                    <!--Espacio para logo-->
+                    <Grid RowDefinitions="*,*,*" Margin="10" ColumnSpacing="0" RowSpacing="0">
+                        <Frame BackgroundColor="red"></Frame>
+                        <Frame Grid.Row="1" BackgroundColor="Yellow"></Frame>
+                        <Frame Grid.Row="2" BackgroundColor="Blue"></Frame>
+                    </Grid>
+                    <Image Source="Unan1.png" Aspect="AspectFit" Margin="10"/>
+                    <!--Espacio para titulo de la app-->
+                    <Frame Grid.Column="1" BackgroundColor="Transparent">
+                        <Label Text="Avance Programático" HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="WhiteSmoke"/>
+                    </Frame>
+                    <!--Boton de agregar-->
+                    <Frame Grid.Column="2" HasShadow="False" BackgroundColor="Transparent">
+                        <Button Grid.Column="2" BackgroundColor="Transparent"
+                ImageSource="flecha_left2.png" x:Name="btnCerrar" Clicked="btnCerrar_Clicked"/>
+                    </Frame>
+                </Grid>
+                <!--Avance-->
+                <Grid Grid.Row="1" RowDefinitions="*">
+                    <Label Text="Aca deberia de ir los datos para el avance programático" 
+                       FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" TextColor="Black"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

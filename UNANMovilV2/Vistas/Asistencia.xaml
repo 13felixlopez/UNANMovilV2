@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:UNANMovilV2.Funciones"
+             x:Class="UNANMovilV2.Vistas.Asistencia"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content >
+        <Grid RowDefinitions="Auto,Auto,*" BackgroundColor="Gray">
+            <Grid RowDefinitions="80,55,*" BackgroundColor="Gray">
+                <!-- Espacio para el título de la página -->
+                <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
+                    <!-- Espacio para el logo -->
+                    <Grid RowDefinitions="*,*,*" Margin="10" ColumnSpacing="0" RowSpacing="0">
+                        <Frame BackgroundColor="Red" />
+                        <Frame Grid.Row="1" BackgroundColor="Yellow" />
+                        <Frame Grid.Row="2" BackgroundColor="Blue" />
+                    </Grid>
+                    <Image Source="Unan1.png" Aspect="AspectFit" Margin="10" />
+                    <!-- Espacio para el título de la app -->
+                    <Frame Grid.Column="1" BackgroundColor="Transparent">
+                        <Label Text="Nueva Asistencia" HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" TextColor="WhiteSmoke" />
+                    </Frame>
+                    <!-- Boton de Volver -->
+                    <Frame Grid.Column="2" HasShadow="False" BackgroundColor="Transparent">
+                        <Button Grid.Column="2" BackgroundColor="Transparent"
+            ImageSource="flecha_left2.png" x:Name="btnCerrar" Clicked="btnCerrar_Clicked" />
+                    </Frame>
+                </Grid>
+                <!-- Contenedor de Fecha -->
+                <Frame HasShadow="False" Grid.Row="1" Margin="5,-5,5,0" BackgroundColor="White">
+                    <Label Text="25/5/2023" TextColor="Black" FontSize="25" FontAttributes="Bold"
+        HorizontalTextAlignment="Center" VerticalOptions="Center" Margin="-10" />
+                </Frame>
+            </Grid>
+            <ScrollView Grid.Row="2" Margin="5,-10,5,0">
+                <!-- Contenedor de Formulario -->
+                <Grid RowDefinitions="Auto,Auto,*">
+                    <!-- Contenedor de Hora y Bloque a impartir -->
+                    <StackLayout BackgroundColor="White" Padding="10">
+                        <!-- Contenedor de Hora de entrada -->
+                        <Grid ColumnDefinitions="Auto,Auto">
+                            <Label Text="Hora de entrada: " TextColor="Black" HorizontalOptions="EndAndExpand"
+                VerticalOptions="Center" FontAttributes="Bold" FontSize="25" />
+                            <TimePicker Grid.Column="1" FontSize="23" TextColor="Green" HorizontalOptions="StartAndExpand"
+                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                        <!-- Bloques a impartir -->
+                        <Grid ColumnDefinitions="Auto,Auto,Auto">
+                            <Label Text="Bloques a impartir:" TextColor="Black"
+                FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                            <Entry Grid.Column="1" Keyboard="Numeric" TextColor="Black" FontAttributes="Bold" Placeholder="#"
+                FontSize="20" HorizontalTextAlignment="Center" PlaceholderColor="Gray" Margin="5"/>
+                            <Button Text="Aceptar" Grid.Column="2" FontSize="20" TextColor="Black"
+                BackgroundColor="#FFFF80" FontAttributes="Bold" BorderColor="Gray"
+                BorderWidth="2" CornerRadius="25" Margin="10" />
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1">
+                        <!-- Contenedor del formulario a llenar -->
+                        <Grid BackgroundColor="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Contenedor del indicador del bloque y año -->
+                            <Grid ColumnDefinitions="Auto,Auto,*">
+                                <Label Text="Bloque: #" TextColor="Black" FontSize="20"
+                                        HorizontalOptions="End" VerticalOptions="Center" FontAttributes="Bold" Margin="10,0,0,0" />
+                                <Label Grid.Column="1" Text="1" TextColor="Black" FontSize="Body"
+                                        HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontAttributes="Bold" />
+
+                                <Grid Grid.Column="2" ColumnDefinitions="*,*">
+                                    <Label Text="Año:" TextColor="Black" FontSize="20" VerticalOptions="Center"
+                                            HorizontalOptions="End" FontAttributes="Bold" />
+                                    <Picker Grid.Column="1" TextColor="Black" Title="Año" VerticalOptions="EndAndExpand"
+                                            HorizontalTextAlignment="Center" Margin="0,0,10,0" />
+                                </Grid>
+                            </Grid>
+
+                            <!-- Contenedor de Semestre -->
+                            <Grid Grid.Row="1" ColumnDefinitions="Auto,*" Margin="0,5,0,0">
+                                <Label Text="Semestre:" TextColor="Black" FontSize="20" VerticalOptions="Center"
+                                        Margin="10,0,0,0" FontAttributes="Bold" />
+                                <Picker Grid.Column="1" TextColor="Black" Title="Semestre"
+                                        HorizontalTextAlignment="Center" TitleColor="Gray" FontAttributes="Bold" FontSize="20" ItemsSource="{Binding Modalidades}" 
+                            x:Name="PcSemestre" SelectedIndexChanged="PcSemestre_SelectedIndexChanged"/>
+                            </Grid>
+                            
+                            <!-- Contenedor de Modadlidad -->
+                            <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="0,5,0,0">
+                                <Label Text="Modalidad:" TextColor="Black" FontSize="20" VerticalOptions="Center"
+            Margin="10,0,0,0" FontAttributes="Bold" />
+                                <local:DisplayMemberPicker Grid.Column="1" TextColor="Black" Title="Modalidad"
+            HorizontalTextAlignment="Center" TitleColor="Gray" FontAttributes="Bold" FontSize="20" ItemsSource="{Binding Modalidades}"
+                                        x:Name="PcModalidades" DisplayMemberPath="Modalidad" SelectedIndexChanged="PcModalidades_SelectedIndexChanged"/>
+                            </Grid>
+                            
+                            <!-- Contenedor de carrera -->
+                            <Grid Grid.Row="3" ColumnDefinitions="Auto,*" Margin="0,5,0,0">
+                                <Label Text="Carrera:" TextColor="Black" FontSize="20" VerticalOptions="Center"
+            HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
+                                <Picker Grid.Column="1" TextColor="Black" Title="Carreras" VerticalOptions="EndAndExpand"
+            HorizontalTextAlignment="Center" TitleColor="Gray" FontAttributes="Bold" FontSize="20" x:Name="PcCarrera" 
+                                        ItemsSource="{Binding Modalidades}"/>
+                            </Grid>
+
+                            <!-- Contenedor de Asignatura -->
+                            <Grid Grid.Row="4" ColumnDefinitions="Auto,*" Margin="0,5,0,0">
+                                <Label Text="Asignatura:" TextColor="Black" FontSize="20" VerticalOptions="Center"
+            HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
+                                <Picker Grid.Column="1" TextColor="Black" Title="Asignatura" VerticalOptions="EndAndExpand"
+            HorizontalTextAlignment="Center" TitleColor="Gray" FontAttributes="Bold" FontSize="20" x:Name="PcAsignatura" />
+                            </Grid>
+
+                            <!-- Contenedor de Contenido a impartir -->
+                            <Grid Grid.Row="5" ColumnDefinitions="Auto,*" Margin="0,5,0,0">
+                                <Label Text="Contenido:" TextColor="Black" FontSize="20" VerticalOptions="Center"
+            HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
+                                <Picker Grid.Column="1" TextColor="Black" Title="Contenidos" VerticalOptions="EndAndExpand"
+            HorizontalTextAlignment="Center" TitleColor="Gray" FontAttributes="Bold" FontSize="20" x:Name="PcContenido" />
+                            </Grid>
+
+
+                            <!-- Boton de agregar los datos del bloque -->
+                            <Button Grid.Row="6" Text="Agregar Bloque" TextColor="Black" BackgroundColor="Coral" FontSize="20"
+        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="25"
+        FontAttributes="Bold" Margin="0,10" BorderColor="Gray" BorderWidth="2" />
+                        </Grid>
+                    </StackLayout>
+                    <!-- Contenedor de datos de salida -->
+                    <StackLayout Grid.Row="2" BackgroundColor="White" Padding="50">
+                        <Button Text="Guardar" TextColor="Black" BackgroundColor="#0C7EF0" FontSize="20"
+            FontAttributes="Bold" BorderColor="Gray" BorderWidth="2" CornerRadius="25"
+            HorizontalOptions="CenterAndExpand" Margin="0,0,0,10" />
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
