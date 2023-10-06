@@ -5,58 +5,116 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!--Contenedor de las divisiones de la pantalla-->
-        <Grid RowDefinitions="160,*,240,100" BackgroundColor="White">
+        <Grid RowDefinitions="160,*,240,100"
+              BackgroundColor="White">
             <!--Contenedor del titulo-->
-            <Frame BackgroundColor="#042758" Margin="-5,-25,0,0">
+            <Frame BackgroundColor="#042758"
+                   Margin="-5,-25,0,0">
                 <!--Nombre de la Universidad-->
-                <Label Grid.Row="1" Text="UNAN - FAREM Matagalpa" Margin="10" TextColor="White" FontSize="40"
-                       HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                <Label Grid.Row="1"
+                       Text="UNAN - FAREM Matagalpa"
+                       Margin="10"
+                       TextColor="White"
+                       FontSize="40"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Bold" />
             </Frame>
             <!--Contenedor del formulario de inicio de sesion-->
-            <Frame Grid.Row="1" Margin="20,-40,20,0" BackgroundColor="White" CornerRadius="25">
+            <Frame Grid.Row="1"
+                   Margin="20,-40,20,0"
+                   BackgroundColor="White"
+                   CornerRadius="25">
                 <!--Division de los elementos-->
-                <Grid RowDefinitions="*,*,*" ColumnSpacing="0" RowSpacing="0">
+                <Grid RowDefinitions="*,*,*"
+                      ColumnSpacing="0"
+                      RowSpacing="0">
                     <!--Logo de la unan-->
-                    <Image Source="Unan1.png" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Image Source="Unan1.png"
+                           Aspect="AspectFill"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
                     <!--Insertar Usuario-->
-                    <Grid Grid.Row="1" ColumnDefinitions="50,*" VerticalOptions="Center">
+                    <Grid Grid.Row="1"
+                          ColumnDefinitions="50,*"
+                          VerticalOptions="Center">
                         <!--Imagen de User-->
-                        <Image Source="User.png" HorizontalOptions="EndAndExpand" 
-                           VerticalOptions="CenterAndExpand"/>
+                        <Image Source="User.png"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="CenterAndExpand" />
                         <!--Entrada de para INSS-->
-                        <Entry Grid.Column="1" Placeholder="INSS" FontAttributes="Bold" 
-                           FontSize="20" VerticalOptions="Center" Keyboard="Numeric"
-                           HorizontalTextAlignment="Start" Margin="20,0,0,0" 
-                           PlaceholderColor="Gray" x:Name="txtINSS" TextColor="Black"/>
+                        <Entry Grid.Column="1"
+                               Placeholder="INSS"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               VerticalOptions="Center"
+                               Keyboard="Numeric"
+                               HorizontalTextAlignment="Start"
+                               Margin="20,0,0,0"
+                               PlaceholderColor="Gray"
+                               x:Name="txtINSS"
+                               TextColor="Black" />
                     </Grid>
                     <!--Insertar contraseña-->
-                    <Grid Grid.Row="2" ColumnDefinitions="50,*" VerticalOptions="Center">
+                    <Grid Grid.Row="2"
+                          ColumnDefinitions="50,*"
+                          VerticalOptions="Center">
                         <!--Imagen de Pass-->
-                        <Image Source="pass.png" HorizontalOptions="EndAndExpand" 
-                           VerticalOptions="CenterAndExpand"/>
+                        <Image Source="pass.png"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="CenterAndExpand" />
                         <!--Entrada de para Pass-->
-                        <Entry Grid.Column="1" Placeholder="Contraseña" PlaceholderColor="Gray"
-                               FontAttributes="Bold" FontSize="20" VerticalOptions="Center"
-                           HorizontalTextAlignment="Start" Margin="20,0,0,0" IsPassword="True" 
+                        <Entry Grid.Column="1"
+                               Placeholder="Contraseña"
+                               PlaceholderColor="Gray"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               VerticalOptions="Center"
+                               HorizontalTextAlignment="Start"
+                               Margin="20,0,0,0"
+                               IsPassword="True"
                                x:Name="txtPass"
-                           TextColor="Black"/>
+                               TextColor="Black" />
                     </Grid>
                 </Grid>
             </Frame>
             <!--Boton para iniciar sesion-->
-            <Frame Grid.Row="2" Margin="0,0,0,120">
-                <Button Grid.Row="2" Text="Iniciar Sesion" BackgroundColor="#1976D2" TextColor="White" FontSize="20"
-                FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="StartAndExpand"
-               CornerRadius="25" Margin="0,40,0,0" Padding="30,0,30,0" x:Name="BtnIniciarSesion" Clicked="BtnIniciarSesion_Clicked"
-                        />
+            <Frame Grid.Row="2"
+                   Margin="0,0,0,120">
+                <Button Grid.Row="2"
+                        Text="Iniciar Sesion"
+                        BackgroundColor="#1976D2"
+                        TextColor="White"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="StartAndExpand"
+                        CornerRadius="25"
+                        Margin="0,40,0,0"
+                        Padding="30,0,30,0"
+                        x:Name="BtnIniciarSesion"
+                        Clicked="BtnIniciarSesion_Clicked" />
             </Frame>
             <!--Apartado de Lema-->
-            <Frame Grid.Row="3" Margin="0,-130,0,0">
+            <Frame Grid.Row="3"
+                   Margin="0,-130,0,0">
                 <Grid RowDefinitions="*,*">
                     <!--Lema-->
-                    <Label Text="¡A la libertad por la Universidad!" TextColor="Black" FontSize="20" VerticalTextAlignment="Start"
-                       HorizontalTextAlignment="Center"/>
-                    <Frame Grid.Row="2" BackgroundColor="#042758" Margin="-20"></Frame>
+                    <Button Text="Restablecer Contraseña"
+                            Margin="0,-20,0,20"
+                            BackgroundColor="Transparent"
+                            TextColor="Blue"
+                            FontAttributes="Bold"
+                            x:Name="BtnRestablecer"
+                            Clicked="BtnRestablecer_Clicked"></Button>
+                    <Frame Grid.Row="2"
+                           BackgroundColor="#042758"
+                           Margin="-22">
+                        <Label Text="¡A la libertad por la Universidad!"
+                               TextColor="White"
+                               FontSize="25"
+                               VerticalTextAlignment="Start"
+                               HorizontalTextAlignment="Center" />
+                    </Frame>
                 </Grid>
             </Frame>
         </Grid>

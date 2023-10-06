@@ -49,7 +49,7 @@
                     </Grid>
                     <Frame Grid.Row="2" BackgroundColor="#800000FF" BorderColor="White"
                         Margin="40, 100">
-                        <Label Text="¡A la libertad por la Univerdidad!"
+                        <Label Text="¡A la libertad por la Universidad!"
                    FontAttributes="Bold" FontSize="30" TextColor="White"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" BackgroundColor="Transparent" 

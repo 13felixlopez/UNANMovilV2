@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UNANMovilV2.Vistas.RestablecerPass"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,300,auto">
+            
+            <Grid RowDefinitions="80"
+                  BackgroundColor="red">
+                <!-- Espacio para el título de la página -->
+                <Grid ColumnDefinitions="80,*,70"
+                      ColumnSpacing="0"
+                      RowSpacing="0"
+                      BackgroundColor="#2F257C">
+                    <!-- Espacio para el logo -->
+                    <Grid RowDefinitions="*,*,*"
+                          Margin="10"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+                        <Frame BackgroundColor="Red" />
+                        <Frame Grid.Row="1"
+                               BackgroundColor="Yellow" />
+                        <Frame Grid.Row="2"
+                               BackgroundColor="Blue" />
+                    </Grid>
+                    <Image Source="Unan1.png"
+                           Aspect="AspectFit"
+                           Margin="10" />
+                    <!-- Espacio para el título de la app -->
+                    <Frame Grid.Column="1"
+                           BackgroundColor="Transparent">
+                        <Label Text="Restablecer Contraseña"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               TextColor="WhiteSmoke" />
+                    </Frame>
+                    <!-- Boton de Volver -->
+                    <Frame Grid.Column="2"
+                           HasShadow="False"
+                           BackgroundColor="Transparent">
+                        <Button Grid.Column="2"
+                                BackgroundColor="Transparent"
+                                ImageSource="flecha_left2.png"
+                                x:Name="btnCerrar"
+                                 Clicked="btnCerrar_Clicked"/>
+                    </Frame>
+                </Grid>
+               
+            </Grid>
+            <Grid Grid.Row="1" RowDefinitions="*,auto" RowSpacing="0" ColumnSpacing="0">
+                <Image Source="pass.png" />
+                <Label Grid.Row="1" Text="Ingrese su nùmero de INSS" HorizontalTextAlignment="Center" FontSize="20"
+                       FontAttributes="Bold" TextColor="Black" Padding="0,0,0,70"/>
+            </Grid>
+            <Grid Grid.Row="2" RowDefinitions="*,*" Margin="0,-60">
+                <Entry Grid.Row="0"
+                       Placeholder="INSS"
+                       Keyboard="Numeric"
+                       Margin="20,0"></Entry>
+                <Button Grid.Row="1"
+                        Text="Enviar"
+                        TextColor="green" Margin="20,0" CornerRadius="20" FontSize="18"
+                        FontAttributes="Bold"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
