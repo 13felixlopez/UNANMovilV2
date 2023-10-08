@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using UNANMovilV2.Vistas;
 using UNANMovilV2.VistasModelos;
@@ -18,8 +15,9 @@ namespace UNANMovilV2.Funciones
         }
         private async Task Detalle()
         {
-            await Navigation.PushAsync(new DetalleAsistencia());
+           await Navigation.PushAsync(new DetalleAsistencia());
         }
+
         public ICommand DetalleCommand { get; }
     }
 }

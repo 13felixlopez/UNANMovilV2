@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:funciones="clr-namespace:UNANMovilV2.Funciones" x:DataType="funciones:FMostrarDetalle"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="UNANMovilV2.Vistas.MostrarAsistencia"
              NavigationPage.HasNavigationBar="False">
     <Grid RowDefinitions="80,55,*" BackgroundColor="Gray">
@@ -33,139 +33,35 @@
                       BackgroundColor="Transparent" HeightRequest="50" WidthRequest="50"/>
         </Grid>
         <!--Espacio de datos-->
-        <ScrollView Grid.Row="2">
-            <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*">
-                <StackLayout Margin="5,0,5,0" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="CenterAndExpand" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="1" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="2" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="3" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="4" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="5" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="6" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="7" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="8" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-                <StackLayout Margin="5,0,5,0" Grid.Row="9" BackgroundColor="White">
-                    <Label Text="24/5/2023" HorizontalOptions="Center" FontSize="25"
-                    TextColor="Black"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Text="Entrada:" HorizontalOptions="CenterAndExpand" FontSize="20"
-                    TextColor="Green"/>
-                        <Label Grid.Column="1" Text="Salida:" TextColor="red" FontSize="20" VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"/>
-                    </Grid>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DetalleCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-            </Grid>
+        <ScrollView Grid.Row="2" >
+            <CollectionView x:Name="lstAsis">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="5,0,5,0" BackgroundColor="White">
+                            <Grid ColumnDefinitions="150,155,20">
+                                <Label Margin="10,5,0,0" Text="{Binding Fecha}" HorizontalOptions="StartAndExpand" FontSize="25"
+                                        TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Margin="30,5,5,5" Text="Bloques:" HorizontalOptions="EndAndExpand" FontSize="25" TextColor="Black"/>
+                                <Label Grid.Column="2" Margin="5" Text="{Binding Bloques}" HorizontalOptions="StartAndExpand" FontSize="25" TextColor="Black"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="*,*,*,*">
+                                <Label Text="Entrada:" TextColor="Green" FontSize="20" HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                                <Label Grid.Column="1" Text="{Binding HoraInicio}" HorizontalOptions="Start" FontSize="20"
+                                        TextColor="Green" FontAttributes="Bold"/>
+                                <Label Grid.Column="2" Text="Salida:" TextColor="red" FontSize="20"
+                                        HorizontalOptions="End" FontAttributes="Bold"/>
+                                <Label Grid.Column="3" Text="{Binding HoraFin}" TextColor="red" FontSize="20" 
+                                        HorizontalOptions="Start" FontAttributes="Bold"/>
+                            </Grid>
+                        <BoxView BackgroundColor="Black" HeightRequest="2" WidthRequest="500"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavegarRegistrocomamd}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </ScrollView>
+
     </Grid>
 </ContentPage>

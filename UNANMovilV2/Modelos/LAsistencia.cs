@@ -1,0 +1,20 @@
+﻿using System;
+
+namespace UNANMovilV2.Modelos
+{
+    public class LAsistencia
+    {
+        public int IdAsistencia { get; set; }
+        public int INSS { get; set; }
+        public string Fecha { get; set; }
+        public int Bloques { get; set; }
+        public int IdDetalleAsistencia { get; set; }
+        public int IdAsignatura { get; set; }
+        public int IdTema { get; set; }
+        public string HoraInicio { get; set; }
+        public string HoraFin { get; set; }
+        public string Observacion { get; set; }
+        public string Contenido { get; set; }
+        public string Estado { get; set; }
+    }
+}
