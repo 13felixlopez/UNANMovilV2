@@ -72,18 +72,8 @@
                              <Grid ColumnDefinitions="*,*" Margin="10">
                                     <Label Text="Bloque: #" TextColor="Black" FontSize="20"
                                             HorizontalOptions="End" FontAttributes="Bold" />
-                                    <Label Grid.Column="1" Text="1" TextColor="Black" FontSize="20"
+                                <Label Grid.Column="1" Text="1" TextColor="Black" FontSize="20"
                                             HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
-                                <CollectionView x:Name="lstid" HeightRequest="10">
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate x:Name="dtasig">
-                                            <StackLayout>
-                                                <Label Text="{Binding IdAsig}" TextColor="Black" FontSize="20"
-                                                   x:Name="LblId" />
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
                             </Grid>
                                         
 
@@ -119,7 +109,8 @@
                                 <Label Text="Contenido:" TextColor="Black" FontSize="20" VerticalOptions="Center"
             HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
                                 <Picker Grid.Column="1" TextColor="Black" Title="Contenidos" VerticalOptions="EndAndExpand"
-            HorizontalTextAlignment="Center" TitleColor="Gray" FontAttributes="Bold" FontSize="20" x:Name="PcContenido" />
+            HorizontalTextAlignment="Center" TitleColor="Gray" FontAttributes="Bold" FontSize="20" x:Name="PcContenido" 
+                                        ItemDisplayBinding="{Binding Contenido}"/>
                             </Grid>
 
 

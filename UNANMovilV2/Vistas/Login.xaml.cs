@@ -13,7 +13,7 @@ namespace UNANMovilV2.Vistas
         MProfes mprofes = new MProfes();
         NProfes nprofes= new NProfes();
         public static string nombreprofe;
-        public static byte[] Icono;
+        //public static byte[] Icono;
         public static int idprofesor;
         public static string correo;
         public static string Tusuario;
@@ -47,7 +47,7 @@ namespace UNANMovilV2.Vistas
                     {
                         idprofesor = Convert.ToInt32(dt.Rows[0][0]);
                         nombreprofe = dt.Rows[0][1].ToString();
-                        Icono = (byte[])dt.Rows[0][3];
+                        //Icono = (byte[])dt.Rows[0][3];
                         correo = dt.Rows[0][5].ToString();
                         Tusuario = dt.Rows[0][6].ToString();
                         INSS = int.Parse(dt.Rows[0][2].ToString());

@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Text;
-using Xamarin.Forms;
+using System.Data.SqlClient;
 using UNANMovilV2.Modelos;
-using static UNANMovilV2.VistasModelos.DModalidad;
+using Xamarin.Forms;
 
 namespace UNANMovilV2.VistasModelos
 {
     public class DAsignatura
     {
-        Label lbl;
-        Label lbl2;
         public string carrera;
         public string grupo;
         public List<MAsignatura> MostrarAsignaturaPlan(int INSS)
@@ -78,11 +74,47 @@ namespace UNANMovilV2.VistasModelos
                 Conexion.Cerrar();
             }
         }
-        public void MostrarCarreraGrupo(MAsignatura parametros,int INSS)
+        public List<MAsignatura> MostrarContenidos(int IdAsig, string Grupo, int INSS)
+        {
+            var LstCont = new List<MAsignatura>();
+            try
+            {
+                DataTable dt = new DataTable();
+                //Abrir la conexión a la base de datos
+                Conexion.Abrir();
+
+                //Crear el comando SQL para el procedimiento almacenado
+                SqlDataAdapter da = new SqlDataAdapter("MostrarContenidos", Conexion.conectar);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@INSS", INSS);
+                da.SelectCommand.Parameters.AddWithValue("@Asignatura", IdAsig);
+                da.SelectCommand.Parameters.AddWithValue("@Grupo", Grupo);
+                da.Fill(dt);
+
+                foreach (DataRow rdr in dt.Rows)
+                {
+                    MAsignatura parametros = new MAsignatura();
+                    parametros.IdTema = int.Parse(rdr["IdTema"].ToString());
+                    parametros.Contenido = rdr["Contenido"].ToString();
+                    LstCont.Add(parametros);
+                }
+                return LstCont;
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                return LstCont;
+            }
+            finally
+            {
+                //Cerrar la conexión a la base de datos
+                Conexion.Cerrar();
+            }
+        }
+        public void MostrarCarreraGrupo(MAsignatura parametros, int INSS)
         {
             try
             {
-                //AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
                 Conexion.Abrir();
                 SqlCommand da = new SqlCommand("MostrarCarreraGrupo", Conexion.conectar);
                 da.CommandType = CommandType.StoredProcedure;

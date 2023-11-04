@@ -32,11 +32,6 @@ namespace UNANMovilV2.Vistas
             PcAsig.ItemsSource = data;
 
         }
-        //private void MostrarCarreraGrupo()
-        //{
-        //    var funcion = new DAsignatura();
-        //    var data = funcion.MostrarCarreraGrupo(idAsignatura, INSS);
-        //}
 
         private void PcAsig_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -51,23 +46,22 @@ namespace UNANMovilV2.Vistas
 
                     // Llamar al método para mostrar la carrera y grupo
                     var funcion = new DAsignatura();
-                    funcion.MostrarCarreraGrupo(parametros,Login.INSS);
-
+                    funcion.MostrarCarreraGrupo(parametros, Login.INSS);
                     // Mostrar la carrera en la etiqueta LblCarrera
                     LblCarrera.Text = funcion.carrera;
                     lblGrupo.Text = funcion.grupo;
+                    string gr = lblGrupo.Text;
+                    var data = funcion.MostrarContenidos(asignaturaSeleccionada.IdAsig, gr, Login.INSS);
+                    PcContenido.ItemsSource = data;
                 }
             }
         }
-
-
-
 
         private void Button_Clicked(object sender, EventArgs e)
         {
             if (!validar())
             {
-                DisplayAlert("ERROR","Los bloques no pueden tener un valor menor a 1", "OK");
+                DisplayAlert("ERROR", "Los bloques no pueden tener un valor menor a 1", "OK");
                 nudBloque.Text = "1";
             }
             else
@@ -84,7 +78,7 @@ namespace UNANMovilV2.Vistas
             {
                 return false;
             }
-            return !(nudBloque.Text == "" );
+            return !(nudBloque.Text == "");
         }
     }
 }
