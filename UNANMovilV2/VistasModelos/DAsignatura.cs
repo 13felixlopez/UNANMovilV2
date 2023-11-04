@@ -11,6 +11,10 @@ namespace UNANMovilV2.VistasModelos
 {
     public class DAsignatura
     {
+        Label lbl;
+        Label lbl2;
+        public string carrera;
+        public string grupo;
         public List<MAsignatura> MostrarAsignaturaPlan(int INSS)
         {
             var lstAsig = new List<MAsignatura>();
@@ -74,32 +78,27 @@ namespace UNANMovilV2.VistasModelos
                 Conexion.Cerrar();
             }
         }
-        public List<MAsignatura> MostrarCarreraGrupo(int IdAsignatura, int INSS)
+        public void MostrarCarreraGrupo(MAsignatura parametros,int INSS)
         {
-            var LstAsis = new List<MAsignatura>();
             try
             {
-                DataTable dt = new DataTable();
+                //AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
                 Conexion.Abrir();
                 SqlCommand da = new SqlCommand("MostrarCarreraGrupo", Conexion.conectar);
                 da.CommandType = CommandType.StoredProcedure;
-                da.Parameters.AddWithValue("@IdAsignatura", IdAsignatura);
+                da.Parameters.AddWithValue("@IdAsignatura", parametros.IdAsig);
                 da.Parameters.AddWithValue("@INSS", INSS);
                 SqlDataAdapter cb = new SqlDataAdapter(da);
+                DataTable dt = new DataTable();
                 cb.Fill(dt);
-                foreach (DataRow rdr in dt.Rows)
-                {
-                    var parametros = new MAsignatura();
-                    parametros.Carrera = (rdr["Carrera"].ToString());
-                    parametros.Grupo = rdr["Grupo"].ToString();
-                    LstAsis.Add(parametros);
-                }
-                return LstAsis;
+                parametros.Carrera = dt.Rows[0]["Carrera"].ToString();
+                parametros.Grupo = dt.Rows[0]["Grupo"].ToString();
+                carrera = parametros.Carrera;
+                grupo = parametros.Grupo;
             }
             catch (Exception ex)
             {
                 Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
-                return LstAsis;
             }
             finally
             {
