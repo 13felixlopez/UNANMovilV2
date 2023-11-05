@@ -7,36 +7,34 @@ using Xamarin.Forms;
 
 namespace UNANMovilV2.VistasModelos
 {
-    public class DAsistencia
+    public class DAvance
     {
-        public List<LAsistencia> MostrarAsistencia(int INSS)
+        public List<LAvance> MostrarAvance(int INSS)
         {
-            var LstAsis = new List<LAsistencia>();
+            var lstProg = new List<LAvance>();
             try
             {
                 DataTable dt = new DataTable();
                 // Se abre la conexión a la base de datos
                 Conexion.Abrir();
 
-                SqlDataAdapter da = new SqlDataAdapter("MostrarAsistencia", Conexion.conectar);
+                SqlDataAdapter da = new SqlDataAdapter("MostrarAvacesProgramatico", Conexion.conectar);
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand.Parameters.AddWithValue("@INSS", INSS);
                 da.Fill(dt);
                 foreach (DataRow rdr in dt.Rows)
                 {
-                    var parametros = new LAsistencia();
+                    var parametros = new LAvance();
                     parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString()).ToString("dd/MM/yyyy");
-                    parametros.HoraInicio = DateTime.Parse(rdr["Hora de Entrada"].ToString()).ToString("HH:mm");
-                    parametros.HoraFin = DateTime.Parse(rdr["Hora de Salida"].ToString()).ToString("HH:mm");
-                    parametros.Bloques = int.Parse(rdr["Bloques"].ToString());
-                    LstAsis.Add(parametros);
+                    parametros.Asignatura = rdr["Asignatura"].ToString();
+                    lstProg.Add(parametros);
                 }
-                return LstAsis;
+                return lstProg;
             }
             catch (Exception ex)
             {
                 Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
-                return LstAsis;
+                return lstProg;
             }
             finally
             {

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace UNANMovilV2.VistasModelos
 {
     public class Conexion
     {
         //public static string conexion = ("Data Source= 192.168.246.84; Initial Catalog=UNAN1; Integrated Security=False;User=Dixon;Password=1311");
-        public static string conexion = ("Data Source=  192.168.159.84; Initial Catalog=UNAN1; Integrated Security=False;User=FelixL;Password=1316");
-        public static SqlConnection conectar= new SqlConnection(conexion);
+        public static string conexion = ("Data Source=  192.168.218.84; Initial Catalog=UNAN1; Integrated Security=False;User=FelixL;Password=1316");
+        public static SqlConnection conectar = new SqlConnection(conexion);
 
         public static void Abrir()
         {

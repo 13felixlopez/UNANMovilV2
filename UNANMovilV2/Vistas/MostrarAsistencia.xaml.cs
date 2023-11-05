@@ -9,7 +9,7 @@ namespace UNANMovilV2.Vistas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MostrarAsistencia : ContentPage
     {
-        
+
         public MostrarAsistencia()
         {
             InitializeComponent();
@@ -25,10 +25,9 @@ namespace UNANMovilV2.Vistas
         {
             int INSS = Login.INSS;
 
-            var funcion =new DAsistencia();
+            var funcion = new DAsistencia();
             var data = funcion.MostrarAsistencia(INSS);
             lstAsis.ItemsSource = data;
         }
-
     }
 }

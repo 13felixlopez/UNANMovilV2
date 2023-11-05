@@ -94,18 +94,21 @@
                         x:Name="BtnIniciarSesion"
                         Clicked="BtnIniciarSesion_Clicked" />
             </Frame>
-            <!--Apartado de Lema-->
             <Frame Grid.Row="3"
                    Margin="0,-130,0,0">
-                <Grid RowDefinitions="*,*">
-                    <!--Lema-->
+                <Grid RowDefinitions="*,10,*">
                     <Button Text="Restablecer Contraseña"
-                            Margin="0,-20,0,20"
+                            Margin="0,-20,0,0"
                             BackgroundColor="Transparent"
                             TextColor="Blue"
                             FontAttributes="Bold"
                             x:Name="BtnRestablecer"
                             Clicked="BtnRestablecer_Clicked"></Button>
+                    <BoxView Grid.Row="1" Margin="100,-48,100,57" 
+                             BackgroundColor="Blue" 
+                             />
+                    <!--Apartado de Lema-->
+                    <!--Lema-->
                     <Frame Grid.Row="2"
                            BackgroundColor="#042758"
                            Margin="-22">
