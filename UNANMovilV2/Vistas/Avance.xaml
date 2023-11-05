@@ -5,9 +5,11 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!--Contenedor principal-->
-            <Grid RowDefinitions="80,55,*" BackgroundColor="Gray">
+            <Grid RowDefinitions="80,55,*,80" BackgroundColor="Gray">
                 <!--Titulo-->
-                <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
+                <Grid ColumnDefinitions="80,*,70" 
+                      ColumnSpacing="0" RowSpacing="0" 
+                      BackgroundColor="#2F257C">
                     <!--Espacio para logo-->
                     <Grid RowDefinitions="*,*,*" Margin="10" ColumnSpacing="0" RowSpacing="0">
                         <Frame BackgroundColor="red"></Frame>
@@ -23,21 +25,22 @@
                     <!--Boton de agregar-->
                     <Frame Grid.Column="2" HasShadow="False" BackgroundColor="Transparent">
                         <Button Grid.Column="2" BackgroundColor="Transparent"
-                                ImageSource="Add.png" x:Name="btnAdd" />
+                                ImageSource="Avance.png" x:Name="btnAdd" />
                     </Frame>
                 </Grid>
                 <!--Barra de Buscar por fecha-->
-            <Grid Grid.Row="1" ColumnDefinitions="330,auto" 
+            <Grid Grid.Row="1" ColumnDefinitions="*,*" 
                   BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" 
                   VerticalOptions="FillAndExpand" HeightRequest="100" 
                   WidthRequest="200" Margin="5,0,5,0">
-                <DatePicker VerticalOptions="Center" HorizontalOptions="End" 
+                <DatePicker VerticalOptions="Center" HorizontalOptions="Center" 
                             TextColor="Black"
-                            Margin="0,0,0,0" FontAttributes="Bold" 
+                            Margin="100,0,-60,0" FontAttributes="Bold" 
                             FontSize="Large" HeightRequest="150" 
                             WidthRequest="160"/>
                 <ImageButton Grid.Column="1" Source="Buscar.png" 
                              HorizontalOptions="Start"
+                             Margin="40,0,0,0"
                              BackgroundColor="Transparent" HeightRequest="50" 
                              WidthRequest="50"/>
             </Grid>
@@ -71,6 +74,30 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </ScrollView>
+                <!--Barra de acceso directo-->
+            <Grid ColumnDefinitions="*,*" 
+                  Grid.Row="3"
+                  BackgroundColor="#2F257C">
+                <Button Text="Asistencia" 
+                        ImageSource="Asistencia.png"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        x:Name="BtnAsistencia"
+                        Clicked="BtnAsistencia_Clicked"
+                        Margin="5"/>
+                <Button Text="Cerrar Sesión"
+                        Grid.Column="1"
+                        ImageSource="back.png"
+                        FontSize="22"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        x:Name="BtnSalir"
+                        Clicked="BtnSalir_Clicked"
+                        Margin="5"/>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

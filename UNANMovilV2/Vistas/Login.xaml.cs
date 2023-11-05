@@ -51,7 +51,7 @@ namespace UNANMovilV2.Vistas
                         correo = dt.Rows[0][5].ToString();
                         Tusuario = dt.Rows[0][6].ToString();
                         INSS = int.Parse(dt.Rows[0][2].ToString());
-                        await Navigation.PushAsync(new Menu());
+                        await Navigation.PushAsync(new MostrarAsistencia());
                         txtINSS.Text = "";
                         txtPass.Text = "";
                     }

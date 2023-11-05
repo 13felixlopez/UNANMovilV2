@@ -126,7 +126,7 @@ namespace UNANMovilV2.Funciones
             }
             catch (Exception ex)
             {
-                return "ERROR, Algo anda mal: " + ex.Message;
+                return "ERROR, Algo anda mal, verifique que ingresó su INSS";
             }
             finally
             {

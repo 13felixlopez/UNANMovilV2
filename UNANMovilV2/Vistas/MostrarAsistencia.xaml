@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UNANMovilV2.Vistas.MostrarAsistencia"
              NavigationPage.HasNavigationBar="False">
-    <Grid RowDefinitions="80,55,*" BackgroundColor="Gray">
+    <Grid RowDefinitions="80,55,*,80" BackgroundColor="Gray">
         <!--Espacio para el titulo de pagina principal !-->
         <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
             <!--Espacio para logo-->
@@ -62,6 +62,30 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
-
+        <!--Barra de acceso directo-->
+        <Grid ColumnDefinitions="*,*" 
+              Grid.Row="3"
+              BackgroundColor="#2F257C">
+            <Button Text="Avance Programático" 
+            ImageSource="Asistencia.png"
+            FontSize="15"
+                    BackgroundColor="White"
+                    TextColor="Black"
+            FontAttributes="Bold"
+            x:Name="BtnAP"
+                    Clicked="BtnAP_Clicked"
+                    Margin="5"
+            />
+            <Button Text="Cerrar Sesión"
+            Grid.Column="1"
+            ImageSource="back.png"
+            FontSize="22"
+                    BackgroundColor="White"
+            TextColor="Black"
+            FontAttributes="Bold"
+            x:Name="BtnSalir"
+                    Clicked="BtnSalir_Clicked"
+                    Margin="5"/>
+        </Grid>
     </Grid>
 </ContentPage>

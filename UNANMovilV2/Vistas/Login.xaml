@@ -23,7 +23,8 @@
             <Frame Grid.Row="1"
                    Margin="20,-40,20,0"
                    BackgroundColor="White"
-                   CornerRadius="25">
+                   CornerRadius="25"
+                   x:Name="FrForm">
                 <!--Division de los elementos-->
                 <Grid RowDefinitions="*,*,*"
                       ColumnSpacing="0"
@@ -79,9 +80,9 @@
             </Frame>
             <!--Boton para iniciar sesion-->
             <Frame Grid.Row="2"
-                   Margin="0,0,0,120">
+                   Margin="0,0,0,120" BackgroundColor="Transparent">
                 <Button Grid.Row="2"
-                        Text="Iniciar Sesion"
+                        Text="Iniciar Sesión"
                         BackgroundColor="#1976D2"
                         TextColor="White"
                         FontSize="20"
@@ -95,16 +96,18 @@
                         Clicked="BtnIniciarSesion_Clicked" />
             </Frame>
             <Frame Grid.Row="3"
-                   Margin="0,-130,0,0">
+                   Margin="0,-130,0,0"
+                   BackgroundColor="Transparent">
                 <Grid RowDefinitions="*,10,*">
                     <Button Text="Restablecer Contraseña"
-                            Margin="0,-20,0,0"
+                            Margin="60,0,60,20"
                             BackgroundColor="Transparent"
                             TextColor="Blue"
+                            CornerRadius="15"
                             FontAttributes="Bold"
                             x:Name="BtnRestablecer"
                             Clicked="BtnRestablecer_Clicked"></Button>
-                    <BoxView Grid.Row="1" Margin="100,-48,100,57" 
+                    <BoxView Grid.Row="1" Margin="80,-48,80,57" 
                              BackgroundColor="Blue" 
                              />
                     <!--Apartado de Lema-->

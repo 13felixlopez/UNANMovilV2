@@ -4,7 +4,8 @@
              x:Class="UNANMovilV2.Vistas.RestablecerPass"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto,300,auto">
+        <Grid RowDefinitions="Auto,300,auto" 
+              BackgroundColor="White">
             
             <Grid RowDefinitions="80"
                   BackgroundColor="red">
@@ -52,7 +53,7 @@
             </Grid>
             <Grid Grid.Row="1" RowDefinitions="*,auto" RowSpacing="0" ColumnSpacing="0">
                 <Image Source="pass.png" />
-                <Label Grid.Row="1" Text="Ingrese su nùmero de INSS" HorizontalTextAlignment="Center" FontSize="20"
+                <Label Grid.Row="1" Text="Ingrese su número de INSS" HorizontalTextAlignment="Center" FontSize="20"
                        FontAttributes="Bold" TextColor="Black" Padding="0,0,0,70"/>
             </Grid>
             <Grid Grid.Row="2" RowDefinitions="*,*" Margin="0,-60">
@@ -69,8 +70,10 @@
                     <Image Source="send.png" Margin="10,0,-10,0"/>
                     <Button Grid.Column="1"
                         Text="Enviar"
-                        TextColor="green" Margin="20,0" CornerRadius="20" FontSize="18"
-                        FontAttributes="Bold" x:Name="BtnEnviar" Clicked="BtnEnviar_Clicked"/>
+                        TextColor="green" Margin="20,0" 
+                            CornerRadius="20" FontSize="18"
+                        BackgroundColor="Wheat"
+                            FontAttributes="Bold" x:Name="BtnEnviar" Clicked="BtnEnviar_Clicked"/>
                 </Grid>
             </Grid>
             <Frame Grid.Row="3" Margin="0,100,0,0">
