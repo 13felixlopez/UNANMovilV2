@@ -1,12 +1,13 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using Xamarin.Essentials;
 
 namespace UNANMovilV2.VistasModelos
 {
     public class Conexion
     {
         //public static string conexion = ("Data Source= 192.168.246.84; Initial Catalog=UNAN1; Integrated Security=False;User=Dixon;Password=1311");
-        public static string conexion = ("Data Source=  192.168.218.84; Initial Catalog=UNAN1; Integrated Security=False;User=FelixL;Password=1316");
+        public static string conexion = ("Data Source=  192.168.50.84; Initial Catalog=UNAN1; Integrated Security=False;User=FelixL;Password=1316");
         public static SqlConnection conectar = new SqlConnection(conexion);
 
         public static void Abrir()

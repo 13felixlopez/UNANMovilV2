@@ -11,5 +11,7 @@
         public int INSS { get; set; }
         public int IdAsig { get; set; }
         public int IdTema { get; set; }
+        public int Varones { get; set; }
+        public int Mujeres { get; set; }
     }
 }

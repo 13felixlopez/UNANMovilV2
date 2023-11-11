@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
@@ -13,6 +15,7 @@ namespace UNANMovilV2.Vistas
         MModalidades mod = new MModalidades();
         int INSS = Login.INSS;
         int idAsignatura, cant;
+        List<MAsignatura> datosList = new List<MAsignatura>();
         public Asistencia()
         {
             InitializeComponent();
@@ -69,8 +72,50 @@ namespace UNANMovilV2.Vistas
                 cant = int.Parse(nudBloque.Text.ToString());
                 entrada.IsEnabled = false;
                 contenedor.IsEnabled = true;
+                contenedor.BackgroundColor = Color.White;
+                entrada.BackgroundColor = Color.WhiteSmoke;
             }
         }
+
+        private void BtnBloque_Clicked(object sender, EventArgs e)
+        {
+            var asig = PcAsig.SelectedItem as MAsignatura;
+            var Cont = PcContenido.SelectedItem as MAsignatura;
+            if (validar2())
+            {
+                // Crea un objeto MAsignatura con el elemento seleccionado
+                MAsignatura nuevaAsignatura = new MAsignatura
+                {
+                    Asignatura = asig.Asignatura,
+                    Carrera = LblCarrera.Text,
+                    Grupo = lblGrupo.Text,
+                    Contenido = Cont.Contenido,
+                    Mujeres = int.Parse(TxtMujeres.Text),
+                    Varones = int.Parse(TxtVarones.Text)
+                };
+                // Agrega el nuevo objeto a la lista global
+                datosList.Add(nuevaAsignatura);
+                // Actualiza la fuente de datos del ListView
+                Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
+                Datos.ItemsSource = datosList; // Luego, asigna la lista actualizada
+                limpiar();
+            }
+            else
+            {
+                DisplayAlert("ERROR", "Debe de rellenar todos los campos", "OK");
+            }
+        }
+
+        private void limpiar() 
+        {
+            PcContenido.SelectedItem = null;
+            PcAsig.SelectedItem = null;
+            lblGrupo.Text = "--";
+            LblCarrera.Text = "--";
+            TxtMujeres.Text = "";
+            TxtVarones.Text = "";
+        }
+
         private bool validar()
         {
             double entero;
@@ -79,6 +124,30 @@ namespace UNANMovilV2.Vistas
                 return false;
             }
             return !(nudBloque.Text == "");
+        }
+
+        private void TxtVarones_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TxtVarones.Text!="")
+            {
+                BtnBloque.BackgroundColor = Color.Coral;
+                BtnBloque.IsEnabled = true;
+            }
+            else
+            {
+                BtnBloque.BackgroundColor = Color.Gray;
+                BtnBloque.IsEnabled = false;
+            }
+        }
+
+        private bool validar2()
+        {
+            double entero;
+            if (!double.TryParse(TxtVarones.Text, out entero)|| !double.TryParse(TxtMujeres.Text,out entero))
+            {
+                return false;
+            }
+            return !(TxtMujeres.Text == ""||TxtVarones.Text=="");
         }
     }
 }

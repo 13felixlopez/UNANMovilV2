@@ -33,7 +33,7 @@ namespace UNANMovilV2.Vistas
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                bool respuesta = await DisplayAlert("Cerrar Sesión", "¿Desea cerrar la sesión?", "No", "No");
+                bool respuesta = await DisplayAlert("Cerrar Sesión", "¿Desea cerrar la sesión?", "Sí", "No");
 
                 if (respuesta) // Si el usuario presionó "Sí"
                 {
