@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
@@ -19,6 +18,7 @@ namespace UNANMovilV2.Vistas
         MAsignatura asignaturaSeleccionada;
         MAsignatura Idcont;
         private TimeSpan hora;
+        private DateTime Dia;
         List<MAsignatura> datosList = new List<MAsignatura>();
         public Asistencia()
         {
@@ -26,6 +26,7 @@ namespace UNANMovilV2.Vistas
             Asignatura = new DAsignatura();
             BindingContext = Asignatura;
             MostrarAsignaturaTurno();
+            LblFecha.Text = DateTime.Now.ToString("dd/MMM/yyyy");
         }
 
         protected override void OnAppearing()
@@ -34,6 +35,7 @@ namespace UNANMovilV2.Vistas
 
             // Suscribir al evento PropertyChanged del TimePicker
             TPHoraE.PropertyChanged += TPHoraE_PropertyChanged;
+            
         }
 
         protected override void OnDisappearing()
@@ -186,6 +188,20 @@ namespace UNANMovilV2.Vistas
             }
         }
 
+        private void DPFecha_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName=="Date")
+            {
+                var DatePicker = (Xamarin.Forms.DatePicker)sender;
+                Dia = DatePicker.Date;
+            }
+        }
+
+        private void DPFecha_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            Dia = e.NewDate;
+        }
+
         private bool validar2()
         {
             double entero;
@@ -202,7 +218,6 @@ namespace UNANMovilV2.Vistas
             {
                 List<MAsignatura> lst = new List<MAsignatura>();
 
-                // Obtener los datos de la lista visual (puedes necesitar ajustar esto según tu UI)
                 foreach (var item in datosList)
                 {
                     if (item is MAsignatura asignatura)
@@ -223,9 +238,9 @@ namespace UNANMovilV2.Vistas
                 string horaInicioFormateada = HoraE.ToString("HH:mm");
                 string horaFinFormateada = HoraF.ToString("HH:mm");
 
-                var Hoy = DateTime.Now.ToShortDateString();
+                
                 parametros.INSS = Login.INSS;
-                parametros.Fecha = Hoy.ToString();
+                parametros.Fecha = DateTime.Parse(LblFecha.Text);
                 parametros.Bloques = int.Parse(nudBloque.Text);
                 parametros.HoraInicio = horaInicioFormateada.ToString();
                 parametros.HoraFin = horaFinFormateada.ToString();
@@ -235,15 +250,12 @@ namespace UNANMovilV2.Vistas
                 funcion.Insertaasistencias(parametros, lst);
 
                 // Mostrar mensaje de éxito (puedes ajustar esto según tus necesidades)
-                await DisplayAlert("Éxito", "Registro realizado", "OK");
+                //await DisplayAlert("Éxito", "Registro realizado", "OK");
 
-                // Realizar otras acciones después del éxito
-
-                await Navigation.PopAsync();
+                await Navigation.PushAsync(new MostrarAsistencia());
             }
             catch (Exception ex)
             {
-                // Mostrar mensaje de error (puedes ajustar esto según tus necesidades)
                 await DisplayAlert("Error", ex.Message, "OK");
             }
         }

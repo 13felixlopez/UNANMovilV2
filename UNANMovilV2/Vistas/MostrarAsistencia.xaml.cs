@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Windows.Input;
 using UNANMovilV2.Funciones;
+using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,7 +15,6 @@ namespace UNANMovilV2.Vistas
         public MostrarAsistencia()
         {
             InitializeComponent();
-            BindingContext = new FMostrarDetalle(Navigation);
             VerAsistencia();
         }
         private async void btnAdd_Clicked(object sender, EventArgs e)
@@ -70,5 +71,23 @@ namespace UNANMovilV2.Vistas
             }
         }
 
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var stackLayout = (StackLayout)sender;
+            if (stackLayout.BindingContext is LAsistencia Asis)
+            {
+                // Puedes acceder a las propiedades de asignatura y hacer lo que necesites
+                var IdAsis = Asis.IdAsistencia;
+                var HoraI = Asis.HoraInicio;
+                var HoraF = Asis.HoraFin;
+                var Fecha = Asis.Fecha;
+                MostrarDetalle(IdAsis,HoraI,HoraF,Fecha);
+            }
+        }
+
+        private void MostrarDetalle(int idAsis,string horai,string horaf,string fecha)
+        {
+            Navigation.PushAsync(new DetalleAsistencia(idAsis,horai,horaf,fecha));
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace UNANMovilV2.VistasModelos
                 foreach (DataRow rdr in dt.Rows)
                 {
                     var parametros = new LAvance();
-                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString()).ToString("dd/MM/yyyy");
+                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString()).ToString("dd/MMM/yyyy");
                     parametros.Asignatura = rdr["Asignatura"].ToString();
                     lstProg.Add(parametros);
                 }

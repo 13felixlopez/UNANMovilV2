@@ -16,5 +16,9 @@
         public string Observacion { get; set; }
         public string Contenido { get; set; }
         public string Estado { get; set; }
+        public string Carrera { get; set; }
+        public string Grupo { get; set; }
+        public string Turno { get; set; }
+        public string Asignatura { get; set; }
     }
 }

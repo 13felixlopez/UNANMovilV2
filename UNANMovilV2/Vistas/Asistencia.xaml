@@ -28,10 +28,10 @@
                 </Grid>
                 <!-- Contenedor de Fecha -->
                 <Frame HasShadow="False" Grid.Row="1" Margin="5,-5,5,0" BackgroundColor="White">
-                    <DatePicker TextColor="Black" FontSize="20" FontAttributes="Bold"
+                    <Label TextColor="Black" FontSize="20" FontAttributes="Bold"
                                 HorizontalOptions="CenterAndExpand"
                                 VerticalOptions="Center" Margin="-30"
-                                x:Name="DPFecha"/>
+                                x:Name="LblFecha"/>
                 </Frame>
             </Grid>
             <ScrollView Grid.Row="1" Margin="5,-5,5,0">
@@ -82,7 +82,6 @@
                                 <Label Grid.Column="1" Text="1" TextColor="Black" FontSize="20"
                                             HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
                             </Grid>
-
 
                             <!-- Contenedor de Asignatura/Componente -->
                             <Grid Grid.Row="1" RowDefinitions="*,auto" Margin="0,0,0,5" Padding="0,-5,0,0" >
