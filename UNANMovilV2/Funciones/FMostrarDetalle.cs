@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace UNANMovilV2.Funciones
 {
-    public class FMostrarDetalle:BaseViewModel
+    public class FMostrarDetalle : BaseViewModel
     {
         public FMostrarDetalle(INavigation navigation)
         {
@@ -15,7 +15,7 @@ namespace UNANMovilV2.Funciones
         }
         private async Task Detalle()
         {
-           await Navigation.PushAsync(new DetalleAsistencia());
+            await Navigation.PushAsync(new DetalleAsistencia());
         }
 
         public ICommand DetalleCommand { get; }

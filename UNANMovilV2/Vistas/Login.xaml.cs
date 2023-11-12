@@ -11,7 +11,7 @@ namespace UNANMovilV2.Vistas
     public partial class Login : ContentPage
     {
         MProfes mprofes = new MProfes();
-        NProfes nprofes= new NProfes();
+        NProfes nprofes = new NProfes();
         public static string nombreprofe;
         //public static byte[] Icono;
         public static int idprofesor;

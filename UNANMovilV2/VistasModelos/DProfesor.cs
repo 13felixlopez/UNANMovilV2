@@ -18,7 +18,7 @@ namespace UNANMovilV2.VistasModelos
                 cmd.Parameters.AddWithValue("@INSS", parametros.INSS);
                 cmd.Parameters.AddWithValue("Password", parametros.Password);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt=new DataTable();
+                DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;
             }

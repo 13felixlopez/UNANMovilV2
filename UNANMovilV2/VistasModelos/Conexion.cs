@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using Xamarin.Essentials;
 
 namespace UNANMovilV2.VistasModelos
 {

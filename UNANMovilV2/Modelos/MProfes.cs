@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UNANMovilV2.Modelos
+﻿namespace UNANMovilV2.Modelos
 {
     public class MProfes
     {

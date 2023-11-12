@@ -1,4 +1,6 @@
-﻿namespace UNANMovilV2.Modelos
+﻿using System;
+
+namespace UNANMovilV2.Modelos
 {
     public class MAsignatura
     {
@@ -13,5 +15,10 @@
         public int IdTema { get; set; }
         public int Varones { get; set; }
         public int Mujeres { get; set; }
+        public string Fecha { get; set; }
+        public int Bloques { get; set; }
+        public string HoraInicio { get; set; }
+        public string HoraFin { get; set; }
+        public string Observacion { get; set; }
     }
 }

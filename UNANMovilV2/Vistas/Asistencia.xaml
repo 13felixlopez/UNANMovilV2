@@ -4,7 +4,7 @@
              x:Class="UNANMovilV2.Vistas.Asistencia"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content >
-        <Grid RowDefinitions="Auto,Auto,*,*" BackgroundColor="Gray">
+        <Grid RowDefinitions="Auto,Auto,*,*" BackgroundColor="White">
             <Grid RowDefinitions="80,55,*" BackgroundColor="Gray">
                 <!-- Espacio para el título de la página -->
                 <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
@@ -30,7 +30,8 @@
                 <Frame HasShadow="False" Grid.Row="1" Margin="5,-5,5,0" BackgroundColor="White">
                     <DatePicker TextColor="Black" FontSize="20" FontAttributes="Bold"
                                 HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="Center" Margin="-30" />
+                                VerticalOptions="Center" Margin="-30"
+                                x:Name="DPFecha"/>
                 </Frame>
             </Grid>
             <ScrollView Grid.Row="1" Margin="5,-5,5,0">
@@ -42,15 +43,19 @@
                         <Grid ColumnDefinitions="Auto,Auto">
                             <Label Text="Hora de entrada: " TextColor="Black" HorizontalOptions="EndAndExpand"
                 VerticalOptions="Center" FontAttributes="Bold" FontSize="25" />
-                            <TimePicker Grid.Column="1" FontSize="23" TextColor="Green" HorizontalOptions="StartAndExpand"
-                VerticalOptions="CenterAndExpand" />
+                            <TimePicker Grid.Column="1" FontSize="23" TextColor="Green" 
+                                        HorizontalOptions="StartAndExpand"
+                                        x:Name="TPHoraE"
+                                        VerticalOptions="CenterAndExpand" 
+                                        PropertyChanged="TPHoraE_PropertyChanged"/>
                         </Grid>
                         <!-- Bloques a impartir -->
                         <Grid ColumnDefinitions="Auto,Auto,Auto">
                             <Label Text="Bloques a impartir:" TextColor="Black"
                 FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
-                            <Entry Grid.Column="1" Keyboard="Numeric" TextColor="Black" FontAttributes="Bold" Placeholder="#"
-                FontSize="20" HorizontalTextAlignment="Center" PlaceholderColor="Gray" Margin="5" x:Name="nudBloque"/>
+                            <Entry Grid.Column="1" Keyboard="Numeric" TextColor="Black" 
+                                   FontAttributes="Bold" Text="1"
+                                   FontSize="20" HorizontalTextAlignment="Center" PlaceholderColor="Gray" Margin="5" x:Name="nudBloque"/>
                             <Button Text="Aceptar" Grid.Column="2" FontSize="20" TextColor="Black"
                 BackgroundColor="#FFFF80" FontAttributes="Bold" BorderColor="Gray"
                 BorderWidth="2" CornerRadius="25" Margin="10" Clicked="Button_Clicked" />
@@ -58,7 +63,7 @@
                     </StackLayout>
                     <StackLayout Grid.Row="1">
                         <!-- Contenedor del formulario a llenar -->
-                        <Grid BackgroundColor="GhostWhite" IsEnabled="false" x:Name="contenedor">
+                        <Grid BackgroundColor="Gray" IsEnabled="false" x:Name="contenedor">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="Auto" />
@@ -207,7 +212,9 @@
                     <StackLayout Grid.Row="3" BackgroundColor="White" Padding="50">
                         <Button Text="Guardar" TextColor="Black" BackgroundColor="#0C7EF0" FontSize="20"
                                 FontAttributes="Bold" BorderColor="Gray" BorderWidth="2" CornerRadius="25"
-                                HorizontalOptions="CenterAndExpand" Margin="0,-20,0,0" />
+                                HorizontalOptions="CenterAndExpand" Margin="0,-20,0,0" 
+                                x:Name="BtnGuardar" 
+                                Clicked="BtnGuardar_Clicked"/>
                     </StackLayout>
                 </Grid>
             </ScrollView>

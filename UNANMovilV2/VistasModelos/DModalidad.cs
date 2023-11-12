@@ -62,7 +62,7 @@ namespace UNANMovilV2.VistasModelos
 
                 combo.ItemsSource = modalidades;
                 combo.DisplayMemberPath = "Modalidad";
-                combo.ClassId= "IdModalidad";
+                combo.ClassId = "IdModalidad";
                 combo.SelectedItem = modalidades.FirstOrDefault(); // Establece el primer elemento como seleccionado por defecto
             }
             catch (Exception ex)

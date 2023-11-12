@@ -1,7 +1,5 @@
-﻿using System;
-using UNANMovilV2.Vistas;
+﻿using UNANMovilV2.Vistas;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace UNANMovilV2
 {

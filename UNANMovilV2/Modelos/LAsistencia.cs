@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UNANMovilV2.Modelos
+﻿namespace UNANMovilV2.Modelos
 {
     public class LAsistencia
     {
@@ -11,6 +9,8 @@ namespace UNANMovilV2.Modelos
         public int IdDetalleAsistencia { get; set; }
         public int IdAsignatura { get; set; }
         public int IdTema { get; set; }
+        public int Mujeres { get; set; }
+        public int Varones { get; set; }
         public string HoraInicio { get; set; }
         public string HoraFin { get; set; }
         public string Observacion { get; set; }

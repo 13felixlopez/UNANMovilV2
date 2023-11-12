@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.Runtime.Serialization;
 using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace UNANMovilV2.Vistas
@@ -14,7 +15,10 @@ namespace UNANMovilV2.Vistas
         private DAsignatura Asignatura;
         MModalidades mod = new MModalidades();
         int INSS = Login.INSS;
-        int idAsignatura, cant;
+        int idAsignatura, cant, i;
+        MAsignatura asignaturaSeleccionada;
+        MAsignatura Idcont;
+        private TimeSpan hora;
         List<MAsignatura> datosList = new List<MAsignatura>();
         public Asistencia()
         {
@@ -22,6 +26,22 @@ namespace UNANMovilV2.Vistas
             Asignatura = new DAsignatura();
             BindingContext = Asignatura;
             MostrarAsignaturaTurno();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Suscribir al evento PropertyChanged del TimePicker
+            TPHoraE.PropertyChanged += TPHoraE_PropertyChanged;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            // Desuscribir del evento PropertyChanged del TimePicker
+            TPHoraE.PropertyChanged -= TPHoraE_PropertyChanged;
         }
 
         private async void btnCerrar_Clicked(object sender, EventArgs e)
@@ -40,7 +60,7 @@ namespace UNANMovilV2.Vistas
         {
             if (PcAsig.SelectedItem != null)
             {
-                var asignaturaSeleccionada = PcAsig.SelectedItem as MAsignatura;
+                asignaturaSeleccionada = PcAsig.SelectedItem as MAsignatura;
 
                 if (asignaturaSeleccionada != null)
                 {
@@ -81,32 +101,44 @@ namespace UNANMovilV2.Vistas
         {
             var asig = PcAsig.SelectedItem as MAsignatura;
             var Cont = PcContenido.SelectedItem as MAsignatura;
-            if (validar2())
+            i++;
+            if (i <= cant)
             {
-                // Crea un objeto MAsignatura con el elemento seleccionado
-                MAsignatura nuevaAsignatura = new MAsignatura
+                if (validar2())
                 {
-                    Asignatura = asig.Asignatura,
-                    Carrera = LblCarrera.Text,
-                    Grupo = lblGrupo.Text,
-                    Contenido = Cont.Contenido,
-                    Mujeres = int.Parse(TxtMujeres.Text),
-                    Varones = int.Parse(TxtVarones.Text)
-                };
-                // Agrega el nuevo objeto a la lista global
-                datosList.Add(nuevaAsignatura);
-                // Actualiza la fuente de datos del ListView
-                Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
-                Datos.ItemsSource = datosList; // Luego, asigna la lista actualizada
-                limpiar();
+                    // Crea un objeto MAsignatura con el elemento seleccionado
+                    MAsignatura LstAsis = new MAsignatura
+                    {
+                        IdAsig = asignaturaSeleccionada.IdAsig,
+                        Asignatura = asig.Asignatura,
+                        Carrera = LblCarrera.Text,
+                        Grupo = lblGrupo.Text,
+                        Contenido = Cont.Contenido,
+                        Mujeres = int.Parse(TxtMujeres.Text),
+                        Varones = int.Parse(TxtVarones.Text),
+                        IdTema = Cont.IdTema
+                    };
+
+                    // Agrega el nuevo objeto a la lista global
+                    datosList.Add(LstAsis);
+                    // Actualiza la fuente de datos del ListView
+                    Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
+                    Datos.ItemsSource = datosList; // Luego, asigna la lista actualizada
+                    limpiar();
+                }
+                else
+                {
+                    DisplayAlert("ERROR", "Debe de rellenar todos los campos", "OK");
+                }
             }
-            else
+            if (i == cant)
             {
-                DisplayAlert("ERROR", "Debe de rellenar todos los campos", "OK");
+                contenedor.IsEnabled = false;
+                contenedor.BackgroundColor = Color.Gray;
             }
         }
 
-        private void limpiar() 
+        private void limpiar()
         {
             PcContenido.SelectedItem = null;
             PcAsig.SelectedItem = null;
@@ -126,9 +158,14 @@ namespace UNANMovilV2.Vistas
             return !(nudBloque.Text == "");
         }
 
+        private void BtnGuardar_Clicked(object sender, EventArgs e)
+        {
+            GuardarAsistencia();
+        }
+
         private void TxtVarones_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TxtVarones.Text!="")
+            if (TxtVarones.Text != "")
             {
                 BtnBloque.BackgroundColor = Color.Coral;
                 BtnBloque.IsEnabled = true;
@@ -140,14 +177,76 @@ namespace UNANMovilV2.Vistas
             }
         }
 
+        private void TPHoraE_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Time")
+            {
+                var timePicker = (Xamarin.Forms.TimePicker)sender;
+                hora = timePicker.Time;
+            }
+        }
+
         private bool validar2()
         {
             double entero;
-            if (!double.TryParse(TxtVarones.Text, out entero)|| !double.TryParse(TxtMujeres.Text,out entero))
+            if (!double.TryParse(TxtVarones.Text, out entero) || !double.TryParse(TxtMujeres.Text, out entero))
             {
                 return false;
             }
-            return !(TxtMujeres.Text == ""||TxtVarones.Text=="");
+            return !(TxtMujeres.Text == "" || TxtVarones.Text == "");
         }
+
+        private async void GuardarAsistencia()
+        {
+            try
+            {
+                List<MAsignatura> lst = new List<MAsignatura>();
+
+                // Obtener los datos de la lista visual (puedes necesitar ajustar esto según tu UI)
+                foreach (var item in datosList)
+                {
+                    if (item is MAsignatura asignatura)
+                    {
+                        MAsignatura oConcepto = new MAsignatura();
+                        oConcepto.IdAsig = asignatura.IdAsig;
+                        oConcepto.IdTema = asignatura.IdTema;
+                        oConcepto.Mujeres = asignatura.Mujeres;
+                        oConcepto.Varones = asignatura.Varones;
+                        lst.Add(oConcepto);
+                    }
+                }
+
+                MAsignatura parametros = new MAsignatura();
+                DateTime HoraE = DateTime.Parse(hora.ToString());
+                int bloques=int.Parse(nudBloque.Text);
+                DateTime HoraF = HoraE.AddMinutes(bloques * 80);
+                string horaInicioFormateada = HoraE.ToString("HH:mm");
+                string horaFinFormateada = HoraF.ToString("HH:mm");
+
+                var Hoy = DateTime.Now.ToShortDateString();
+                parametros.INSS = Login.INSS;
+                parametros.Fecha = Hoy.ToString();
+                parametros.Bloques = int.Parse(nudBloque.Text);
+                parametros.HoraInicio = horaInicioFormateada.ToString();
+                parametros.HoraFin = horaFinFormateada.ToString();
+                parametros.Observacion = "Esto es una Asistencia";
+
+                DAsistencia funcion = new DAsistencia();
+                funcion.Insertaasistencias(parametros, lst);
+
+                // Mostrar mensaje de éxito (puedes ajustar esto según tus necesidades)
+                await DisplayAlert("Éxito", "Registro realizado", "OK");
+
+                // Realizar otras acciones después del éxito
+
+                await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                // Mostrar mensaje de error (puedes ajustar esto según tus necesidades)
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
     }
 }
