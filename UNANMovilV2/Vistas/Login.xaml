@@ -24,7 +24,8 @@
                    Margin="20,-40,20,0"
                    BackgroundColor="White"
                    CornerRadius="25"
-                   x:Name="FrForm">
+                   x:Name="FrForm"
+                   BorderColor="Black">
                 <!--Division de los elementos-->
                 <Grid RowDefinitions="*,*,*"
                       ColumnSpacing="0"
@@ -43,17 +44,23 @@
                                HorizontalOptions="EndAndExpand"
                                VerticalOptions="CenterAndExpand" />
                         <!--Entrada de para INSS-->
-                        <Entry Grid.Column="1"
+                        <Frame Grid.Column="1"
+                               BorderColor="Black"
+                               Padding="1"
+                               Margin="20,0,0,0"
+                               CornerRadius="5">
+                            <Entry
                                Placeholder="INSS"
                                FontAttributes="Bold"
                                FontSize="20"
                                VerticalOptions="Center"
                                Keyboard="Numeric"
                                HorizontalTextAlignment="Start"
-                               Margin="20,0,0,0"
+                               Margin="5,0,0,0"
                                PlaceholderColor="Gray"
                                x:Name="txtINSS"
                                TextColor="Black" />
+                        </Frame>
                     </Grid>
                     <!--Insertar contraseña-->
                     <Grid Grid.Row="2"
@@ -64,17 +71,23 @@
                                HorizontalOptions="EndAndExpand"
                                VerticalOptions="CenterAndExpand" />
                         <!--Entrada de para Pass-->
-                        <Entry Grid.Column="1"
+                        <Frame Grid.Column="1"
+                               BorderColor="Black"
+                               Padding="1"
+                               Margin="20,0,0,0"
+                               CornerRadius="5">
+                            <Entry
                                Placeholder="Contraseña"
                                PlaceholderColor="Gray"
                                FontAttributes="Bold"
                                FontSize="20"
                                VerticalOptions="Center"
                                HorizontalTextAlignment="Start"
-                               Margin="20,0,0,0"
+                               Margin="5,0,0,0"
                                IsPassword="True"
                                x:Name="txtPass"
                                TextColor="Black" />
+                        </Frame>
                     </Grid>
                 </Grid>
             </Frame>

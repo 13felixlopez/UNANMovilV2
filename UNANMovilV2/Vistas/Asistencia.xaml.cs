@@ -14,7 +14,7 @@ namespace UNANMovilV2.Vistas
         private DAsignatura Asignatura;
         MModalidades mod = new MModalidades();
         int INSS = Login.INSS;
-        int idAsignatura, cant, i;
+        int idAsignatura, cant, i, j;
         MAsignatura asignaturaSeleccionada;
         MAsignatura Idcont;
         private TimeSpan hora;
@@ -95,7 +95,10 @@ namespace UNANMovilV2.Vistas
                 entrada.IsEnabled = false;
                 contenedor.IsEnabled = true;
                 contenedor.BackgroundColor = Color.White;
-                entrada.BackgroundColor = Color.WhiteSmoke;
+                entrada.BackgroundColor = Color.Gray;
+                BtnAgregar.BackgroundColor = Color.Gray;
+                j = 1;
+                LblNum.Text = j.ToString();
             }
         }
 
@@ -127,6 +130,8 @@ namespace UNANMovilV2.Vistas
                     Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
                     Datos.ItemsSource = datosList; // Luego, asigna la lista actualizada
                     limpiar();
+                    j++;
+                    LblNum.Text = j.ToString();
                 }
                 else
                 {
