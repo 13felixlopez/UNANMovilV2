@@ -5,7 +5,7 @@
              x:Class="UNANMovilV2.Vistas.AddAvanceP">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,Auto,90" BackgroundColor="White" >
-            <Grid RowDefinitions="80,55,*">
+            <Grid RowDefinitions="80,50,*">
                 <!-- Espacio para el título de la página -->
                 <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
                     <!-- Espacio para el logo -->
@@ -28,7 +28,9 @@
                     </Frame>
                 </Grid>
                 <!-- Contenedor de Fecha -->
-                <Frame HasShadow="False" Grid.Row="1" Margin="5,-5,5,0" BackgroundColor="White">
+                <Frame HasShadow="False" Grid.Row="1" 
+                       BorderColor="Black" 
+                       BackgroundColor="White">
                     <Label TextColor="Black" FontSize="20" FontAttributes="Bold"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="Center" Margin="-30"
@@ -41,6 +43,7 @@
                     <!-- Contenedor del formulario a llenar -->
                     <Grid BackgroundColor="White" x:Name="contenedor">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -95,7 +98,7 @@
                         </Grid>
                         <!--Ultimo tema-->
                         <Grid Grid.Row="4" ColumnDefinitions="Auto,*" Margin="0,5,0,0">
-                            <Label Text="Ultimo Tema:" TextColor="Black" FontSize="20" VerticalOptions="Center"
+                            <Label Text="Último tema:" TextColor="Black" FontSize="20" VerticalOptions="Center"
                            HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
                             <Frame Grid.Column="1"
                            BorderColor="Black"
@@ -105,8 +108,12 @@
                            HorizontalTextAlignment="Center" FontSize="20" x:Name="LblTema"/>
                             </Frame>
                         </Grid>
-                        
-                        <CollectionView x:Name="LstTemas" Grid.Row="5">
+                        <Frame Grid.Row="5" BorderColor="Black" Padding="10">
+                            <Label Text="Temas atrasados:" FontSize="20" HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold" TextColor="Black"
+                                   />
+                        </Frame>
+                        <CollectionView x:Name="LstTemas" Grid.Row="6">
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout Span="2" Orientation="Vertical" />
                             </CollectionView.ItemsLayout>
@@ -130,20 +137,20 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                        <Grid Grid.Row="6" RowDefinitions="*,150" BackgroundColor="White" >
+                        <Grid Grid.Row="7" RowDefinitions="*,150" BackgroundColor="White" >
                             <Label Text="Causas de desfase:" TextColor="Black" FontSize="20"
                                    FontAttributes="Bold" VerticalOptions="Center"
                                    HorizontalOptions="CenterAndExpand"/>
                             <Editor Margin="10" Grid.Row="1" TextColor="Black" x:Name="TxtDesfase" 
                                     FontAttributes="Bold"
-                                    BackgroundColor="#b5b5b5"/>
+                                    BackgroundColor="#b5b5b5" TextChanged="TxtDesfase_TextChanged"/>
                         </Grid>
-                        <Grid Grid.Row="7" RowDefinitions="*,150" BackgroundColor="White">
+                        <Grid Grid.Row="8" RowDefinitions="*,150" BackgroundColor="White">
                             <Label Text="Medidas a tomar:" TextColor="Black" FontSize="20"
                                    FontAttributes="Bold" VerticalOptions="Center"
                                    HorizontalOptions="Center"/>
                             <Editor Margin="10" Grid.Row="1" TextColor="Black" FontAttributes="Bold" x:Name="TxtMedidas"
-                                    BackgroundColor="#b5b5b5"/>
+                                    BackgroundColor="#b5b5b5" TextChanged="TxtMedidas_TextChanged"/>
                         </Grid>
                     </Grid>
                 </StackLayout>
@@ -151,7 +158,7 @@
             <Frame Grid.Row="2" BackgroundColor="White" BorderColor="Black">
                 <Button Text="Guardar" TextColor="Black" BackgroundColor="#0C7EF0" FontSize="20"
                     FontAttributes="Bold" BorderColor="Gray" BorderWidth="2" CornerRadius="25"
-                    HorizontalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand" IsEnabled="False"
                     x:Name="BtnGuardar" Clicked="BtnGuardar_Clicked" />
             </Frame>
         </Grid>

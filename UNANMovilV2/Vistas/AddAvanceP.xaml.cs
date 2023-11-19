@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,8 +17,10 @@ namespace UNANMovilV2.Vistas
         public AddAvanceP ()
 		{
             InitializeComponent();
+            BtnGuardar.IsEnabled = false;
             MostrarAsignaturaTurno();
             LblFecha.Text = DateTime.Now.ToString("dd/MMM/yyyy");
+            Activar();
         }
 
         private async void btnCerrar_Clicked(object sender, EventArgs e)
@@ -49,6 +50,16 @@ namespace UNANMovilV2.Vistas
 
                     datosList = AP.MostrarTemasAtrasados(parametros, INSS);
                     LstTemas.ItemsSource= datosList;
+                    if (datosList.Count == 0)
+                    {
+                        TxtMedidas.Text = "Ninguno";
+                        TxtDesfase.Text = "Ninguno";
+                    }
+                    else
+                    {
+                        TxtDesfase.Text = "";
+                        TxtMedidas.Text = "";
+                    }
                 }
             }
         }
@@ -68,10 +79,12 @@ namespace UNANMovilV2.Vistas
                 // LLenar la lista
                 foreach (var item in datosList) // Asegúrate de obtener los datos de la interfaz correcta
                 {
-                    MAsignatura oConcepto = new MAsignatura();
-
-                    oConcepto.TemasAtrasados = item.TemasAtrasados; // Asegúrate de ajustar según la estructura de tus datos
-                    lst.Add(oConcepto);
+                    if (item is MAsignatura avance)
+                    {
+                        MAsignatura oConcepto = new MAsignatura();
+                        oConcepto.TemasAtrasados = avance.Contenido; // Asegúrate de ajustar según la estructura de tus datos
+                        lst.Add(oConcepto);
+                    }
                 }
 
                 MAsignatura parametros = new MAsignatura();
@@ -98,9 +111,32 @@ namespace UNANMovilV2.Vistas
             }
         }
 
+
         private void BtnGuardar_Clicked(object sender, EventArgs e)
         {
             GuardarAP();
+        }
+
+        private void TxtDesfase_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Activar();
+        }
+
+        private void TxtMedidas_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Activar();
+        }
+
+        private void Activar()
+        {
+            if (TxtDesfase.Text!=""&&TxtMedidas.Text!="")
+            {
+                BtnGuardar.IsEnabled = true;
+            }
+            else
+            {
+                BtnGuardar.IsEnabled = false;
+            }
         }
     }
 }

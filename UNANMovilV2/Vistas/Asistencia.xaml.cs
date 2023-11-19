@@ -171,7 +171,12 @@ namespace UNANMovilV2.Vistas
 
         private void TxtVarones_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TxtVarones.Text != "")
+            Activar();
+        }
+
+        private void Activar()
+        {
+            if (TxtVarones.Text != "" && TxtMujeres.Text != "")
             {
                 BtnBloque.BackgroundColor = Color.Coral;
                 BtnBloque.IsEnabled = true;
@@ -204,6 +209,11 @@ namespace UNANMovilV2.Vistas
         private void DPFecha_DateSelected(object sender, DateChangedEventArgs e)
         {
             Dia = e.NewDate;
+        }
+
+        private void TxtMujeres_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Activar();
         }
 
         private bool validar2()
@@ -252,9 +262,6 @@ namespace UNANMovilV2.Vistas
 
                 DAsistencia funcion = new DAsistencia();
                 funcion.Insertaasistencias(parametros, lst);
-
-                // Mostrar mensaje de éxito (puedes ajustar esto según tus necesidades)
-                //await DisplayAlert("Éxito", "Registro realizado", "OK");
 
                 await Navigation.PushAsync(new MostrarAsistencia());
             }

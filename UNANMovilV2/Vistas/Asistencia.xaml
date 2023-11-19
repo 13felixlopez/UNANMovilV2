@@ -159,7 +159,7 @@
                                     <Entry Grid.Column="1" TextColor="Black" VerticalOptions="EndAndExpand"
                                        FontSize="20" x:Name="TxtMujeres" Keyboard="Numeric"
                                        BackgroundColor="WhiteSmoke" IsTextPredictionEnabled="True" 
-                                       HorizontalTextAlignment="Center"/>
+                                       HorizontalTextAlignment="Center" TextChanged="TxtMujeres_TextChanged"/>
                                 </Frame>
                                 <Label Grid.Column="2" Text="Varones:" TextColor="Black" 
                                        FontSize="20" VerticalOptions="Center"
