@@ -7,8 +7,8 @@
         `host`, `puerto` y `ssl`. */
         public DCorreoSoporte()
         {
-            remitenteCorreo = "lfelixlopez732@gmail.com";
-            password = "ckcfjpjydmpyiwjy";
+            remitenteCorreo = "matagalpau@gmail.com";
+            password = "tcnuxkwjggdtoyhz";
             host = "smtp.gmail.com";
             port = 587;
             ssl = true;

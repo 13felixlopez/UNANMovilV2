@@ -48,7 +48,7 @@ namespace UNANMovilV2.Vistas
 
         private async void btnCerrar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            await Navigation.PushAsync(new MostrarAsistencia());
         }
         private void MostrarAsignaturaTurno()
         {
@@ -263,6 +263,16 @@ namespace UNANMovilV2.Vistas
             {
                 await DisplayAlert("Error", ex.Message, "OK");
             }
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                App.Current.MainPage = new Xamarin.Forms.NavigationPage(new MostrarAsistencia());
+            });
+
+            return true;
         }
 
     }

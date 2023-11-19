@@ -60,6 +60,7 @@
                                         <Label Grid.Column="1" HorizontalOptions="CenterAndExpand"
                                                VerticalOptions="CenterAndExpand" FontSize="20" TextColor="#301C1C"
                                                Text="{Binding Asignatura}"/>
+
                                     </Grid>
                                     <!--Contenedor de la carrera-->
                                     <Grid Grid.Row="1" ColumnDefinitions="115,*" Margin="15,0,10,0">

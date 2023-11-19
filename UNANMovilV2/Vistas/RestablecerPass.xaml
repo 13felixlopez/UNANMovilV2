@@ -64,6 +64,8 @@
                        Keyboard="Numeric"
                        Margin="20,0"
                            x:Name="txtUser"
+                           TextColor="Black"
+                           FontAttributes="Bold"
                        HorizontalTextAlignment="Center"></Entry>
                 </Grid>
                 <Grid ColumnDefinitions="50,*" Grid.Row="1" Margin="0,10,0,-10">

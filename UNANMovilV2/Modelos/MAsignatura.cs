@@ -20,5 +20,6 @@ namespace UNANMovilV2.Modelos
         public string HoraInicio { get; set; }
         public string HoraFin { get; set; }
         public string Observacion { get; set; }
+        public string Estado { get; set; }
     }
 }

@@ -141,5 +141,44 @@ namespace UNANMovilV2.VistasModelos
                 Conexion.Cerrar();
             }
         }
+
+        public void FinAsistencias(List<LAsistencia> lst, int IdAsistencia)
+        {
+            try
+            {
+                var dt = new DataTable();
+                DataColumnCollection columns = dt.Columns;
+                columns.Add("Id");
+                columns.Add("Contenido");
+                columns.Add("Estado");
+
+                foreach (var oElement in lst)
+                {
+                    dt.Rows.Add(
+                        oElement.IdTema,
+                        oElement.Contenido,
+                        oElement.Estado);
+                }
+                Conexion.Abrir();
+                SqlCommand cmd = new SqlCommand("FinalizarAsistencia", Conexion.conectar);
+                var parameterlst = new SqlParameter("@lstAsis", SqlDbType.Structured);
+                parameterlst.TypeName = "FinAsistencias";
+                parameterlst.Value = dt;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(parameterlst);
+                cmd.Parameters.AddWithValue("@IdAsistencia", IdAsistencia);
+                cmd.ExecuteReader();
+               Application.Current.MainPage.DisplayAlert("Asistencia Esitada","Asistencia Guardada", "OK");
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", "No se editó la asistencia", "OK");
+            }
+            finally
+            {
+                Conexion.Cerrar();
+            }
+        }
     }
 }
