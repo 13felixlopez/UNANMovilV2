@@ -55,7 +55,6 @@ namespace UNANMovilV2.Vistas
             var funcion = new DAsignatura();
             var data = funcion.MostrarAsignaturaPlan(INSS);
             PcAsig.ItemsSource = data;
-
         }
 
         private void PcAsig_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,7 +94,7 @@ namespace UNANMovilV2.Vistas
                 entrada.IsEnabled = false;
                 contenedor.IsEnabled = true;
                 contenedor.BackgroundColor = Color.White;
-                entrada.BackgroundColor = Color.Gray;
+                entrada.BackgroundColor = Color.FromHex("#b5b5b5");
                 BtnAgregar.BackgroundColor = Color.Gray;
                 j = 1;
                 LblNum.Text = j.ToString();
@@ -141,7 +140,7 @@ namespace UNANMovilV2.Vistas
             if (i == cant)
             {
                 contenedor.IsEnabled = false;
-                contenedor.BackgroundColor = Color.Gray;
+                contenedor.BackgroundColor = Color.FromHex("#b5b5b5");
             }
         }
 

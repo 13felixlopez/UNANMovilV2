@@ -66,5 +66,10 @@ namespace UNANMovilV2.Vistas
 
             return true; // Evita que la página actual aparezca en la pila de navegación
         }
+
+        private async void btnAdd_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddAvanceP());
+        }
     }
 }

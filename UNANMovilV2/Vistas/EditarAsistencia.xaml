@@ -116,8 +116,8 @@
             <CollectionView x:Name="Datos" IsVisible="false" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="20,20,20,4" BackgroundColor="Wheat" 
-                   Padding="5">
+                        <Grid RowDefinitions="20,20,20,4" BackgroundColor="Wheat"
+                              Padding="5">
                             <Label Grid.Row="0" Text="{Binding IdTema}"
                         FontSize="15"
                         TextColor="Black"

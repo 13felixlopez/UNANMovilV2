@@ -9,6 +9,7 @@ namespace UNANMovilV2.VistasModelos
 {
     public class DAvance
     {
+        public string Cont;
         public List<LAvance> MostrarAvance(int INSS)
         {
             var lstProg = new List<LAvance>();
@@ -38,6 +39,118 @@ namespace UNANMovilV2.VistasModelos
             }
             finally
             {
+                Conexion.Cerrar();
+            }
+        }
+        public void MostrarUltimoTema(MAsignatura parametros, int INSS)
+        {
+            try
+            {
+                Conexion.Abrir();
+                SqlCommand da = new SqlCommand("MostrarUltimoTema", Conexion.conectar);
+                da.CommandType = CommandType.StoredProcedure;
+                da.Parameters.AddWithValue("@IdAsignatura", parametros.IdAsig);
+                da.Parameters.AddWithValue("@INSS", INSS);
+                SqlDataAdapter cb = new SqlDataAdapter(da);
+                DataTable dt = new DataTable();
+                cb.Fill(dt);
+                parametros.Contenido = dt.Rows[0]["Contenido"].ToString();
+                Cont = parametros.Contenido;
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+            }
+            finally
+            {
+                Conexion.Cerrar();
+            }
+        }
+
+        public List<MAsignatura> MostrarTemasAtrasados(MAsignatura parametros,int INSS)
+        {
+            var lstProg = new List<MAsignatura>();
+            try
+            {
+                DataTable dt = new DataTable();
+                //Abrir la conexión a la base de datos
+                Conexion.Abrir();
+
+                //Cerar el comando SQL para el procedimiento almacenado
+                SqlDataAdapter da = new SqlDataAdapter("MostrarTemasAtrasados", Conexion.conectar);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@INSS", INSS);
+                da.SelectCommand.Parameters.AddWithValue("@IdAsignatura", parametros.IdAsig);
+                da.Fill(dt);
+
+                foreach (DataRow rdr in dt.Rows)
+                {
+                    var par = new MAsignatura();
+                    par.Contenido = rdr["Temas Atrasados"].ToString();
+                    lstProg.Add(par);
+                }
+                return lstProg;
+
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                return lstProg;
+            }
+            finally
+            {
+                Conexion.Cerrar();
+            }
+        }
+
+        public void GuardarAP(MAsignatura parametros, List<MAsignatura> lst)
+        {
+            try
+            {
+                // Se crea el DataTable con los campos necesarios
+                var dt = new DataTable();
+                dt.Columns.Add("Id");
+                dt.Columns.Add("TemasAtrasados");
+
+                int i = 1;
+
+                // Se recorre la lista agregando los parametros que serán enviados a la base de datos
+                foreach (var oElement in lst)
+                {
+                    dt.Rows.Add(i, oElement.TemasAtrasados);
+                    i++;
+                }
+
+                // Se abre la conexión a la base de datos
+                Conexion.Abrir();
+
+                // Crear el comando para el procedimiento almacenado
+                SqlCommand cmd = new SqlCommand("GuardarAP", Conexion.conectar);
+                var parameterlst = new SqlParameter("@ltsAvanceP", SqlDbType.Structured)
+                {
+                    TypeName = "AP",
+                    Value = dt
+                };
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(parameterlst);
+                cmd.Parameters.AddWithValue("@INSS", parametros.INSS);
+                cmd.Parameters.AddWithValue("@IdAsignatura", parametros.IdAsig);
+                cmd.Parameters.AddWithValue("@UltimoTema", parametros.UltimoTema);
+                cmd.Parameters.AddWithValue("@Fecha", parametros.Fecha);
+                cmd.Parameters.AddWithValue("@Desfase", parametros.Desfase);
+                cmd.Parameters.AddWithValue("@Medidas", parametros.Medidas);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // En Xamarin.Forms, muestra un alerta en lugar de MessageBox
+                Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+            finally
+            {
+                // Se cierra la conexión a la base de datos
                 Conexion.Cerrar();
             }
         }
