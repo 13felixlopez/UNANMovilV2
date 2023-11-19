@@ -35,7 +35,7 @@ namespace UNANMovilV2.Vistas
 
             // Suscribir al evento PropertyChanged del TimePicker
             TPHoraE.PropertyChanged += TPHoraE_PropertyChanged;
-            
+
         }
 
         protected override void OnDisappearing()
@@ -195,7 +195,7 @@ namespace UNANMovilV2.Vistas
 
         private void DPFecha_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName=="Date")
+            if (e.PropertyName == "Date")
             {
                 var DatePicker = (Xamarin.Forms.DatePicker)sender;
                 Dia = DatePicker.Date;
@@ -238,12 +238,12 @@ namespace UNANMovilV2.Vistas
 
                 MAsignatura parametros = new MAsignatura();
                 DateTime HoraE = DateTime.Parse(hora.ToString());
-                int bloques=int.Parse(nudBloque.Text);
+                int bloques = int.Parse(nudBloque.Text);
                 DateTime HoraF = HoraE.AddMinutes(bloques * 80);
                 string horaInicioFormateada = HoraE.ToString("HH:mm");
                 string horaFinFormateada = HoraF.ToString("HH:mm");
 
-                
+
                 parametros.INSS = Login.INSS;
                 parametros.Fecha = DateTime.Parse(LblFecha.Text);
                 parametros.Bloques = int.Parse(nudBloque.Text);

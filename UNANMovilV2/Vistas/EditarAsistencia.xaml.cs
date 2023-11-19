@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
@@ -32,7 +31,7 @@ namespace UNANMovilV2.Vistas
         private async void btnGuardar_Clicked(object sender, EventArgs e)
         {
             DAsistencia funcion = new DAsistencia();
-            funcion.FinAsistencias(datosList,ID);
+            funcion.FinAsistencias(datosList, ID);
             await Navigation.PushAsync(new MostrarAsistencia());
         }
 
@@ -57,7 +56,7 @@ namespace UNANMovilV2.Vistas
                 LAsistencia LstAsis = new LAsistencia
                 {
                     IdTema = IdAsig,
-                    Contenido=Contenido,
+                    Contenido = Contenido,
                     Estado = "Finalizado"
                 };
                 stackLayout.IsEnabled = false;

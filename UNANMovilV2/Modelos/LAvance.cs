@@ -1,4 +1,6 @@
-﻿namespace UNANMovilV2.Modelos
+﻿using System;
+
+namespace UNANMovilV2.Modelos
 {
     public class LAvance
     {

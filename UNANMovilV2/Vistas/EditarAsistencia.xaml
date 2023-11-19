@@ -5,7 +5,7 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!--Contenedor principal-->
-        <Grid RowDefinitions="80,120,*,auto" BackgroundColor="Black">
+        <Grid RowDefinitions="80,120,*,auto" BackgroundColor="Gray">
             <!--Contenedor de la cabecera-->
             <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
                 <!--Espacio para logo-->

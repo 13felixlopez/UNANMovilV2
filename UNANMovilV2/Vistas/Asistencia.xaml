@@ -4,8 +4,8 @@
              x:Class="UNANMovilV2.Vistas.Asistencia"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content >
-        <Grid RowDefinitions="Auto,Auto,*,*" BackgroundColor="White">
-            <Grid RowDefinitions="80,55,*" BackgroundColor="Black">
+        <Grid RowDefinitions="Auto,Auto,60" BackgroundColor="White">
+            <Grid RowDefinitions="80,55,*">
                 <!-- Espacio para el título de la página -->
                 <Grid ColumnDefinitions="80,*,70" ColumnSpacing="0" RowSpacing="0" BackgroundColor="#2F257C">
                     <!-- Espacio para el logo -->
@@ -36,7 +36,7 @@
             </Grid>
             <ScrollView Grid.Row="1" Margin="5,-5,5,0">
                 <!-- Contenedor de Formulario -->
-                <Grid RowDefinitions="Auto,Auto,200,100" >
+                <Grid RowDefinitions="Auto,Auto,200" >
                     <!-- Contenedor de Hora y Bloque a impartir -->
                     <StackLayout BackgroundColor="White" Padding="10" x:Name="entrada">
                         <!-- Contenedor de Hora de entrada -->
@@ -219,12 +219,12 @@
                                                TextColor="Black"
                                                FontAttributes="Bold"
                                                HorizontalTextAlignment="Center"/>
-                                        
+
                                         <Label Grid.Column="1" Text="{Binding Mujeres}"
                                            FontSize="15"
                                            TextColor="Black"
                                            FontAttributes="Bold"/>
-                                        
+
                                         <Label Grid.Column="2" Text="Varones: "
                                                FontSize="15"
                                                TextColor="Black"
@@ -235,22 +235,22 @@
                                            FontSize="15"
                                            TextColor="Black"
                                            FontAttributes="Bold"/>
-                                        
+
                                     </Grid>
                                     <BoxView Grid.Row="5" BackgroundColor="Black" HeightRequest="2" WidthRequest="500"/>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <StackLayout Grid.Row="3" BackgroundColor="White" Padding="50">
+                </Grid>
+            </ScrollView>
+            <StackLayout Grid.Row="2" BackgroundColor="White">
                         <Button Text="Guardar" TextColor="Black" BackgroundColor="#0C7EF0" FontSize="20"
                                 FontAttributes="Bold" BorderColor="Gray" BorderWidth="2" CornerRadius="25"
-                                HorizontalOptions="CenterAndExpand" Margin="0,-20,0,0" 
+                                HorizontalOptions="CenterAndExpand"
                                 x:Name="BtnGuardar" 
                                 Clicked="BtnGuardar_Clicked"/>
                     </StackLayout>
-                </Grid>
-            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -21,23 +21,17 @@ namespace UNANMovilV2.Vistas
             ID = IdAsis;
         }
 
-        private async void btnCerrar_Clicked(object sender, EventArgs e)
+        private async void Editar(int IdAsis, string horai, string horaf, string fecha)
         {
-            //await Navigation.PopAsync()
+            await Navigation.PushAsync(new EditarAsistencia(IdAsis, horai, horaf, fecha));
+        }
+
+        private void BtnEditar_Clicked(object sender, EventArgs e)
+        {
             var HoraI = LblHoraI.Text;
             var HoraF = LblHoraF.Text;
             var Fecha = LblFecha.Text;
             Editar(ID, HoraI, HoraF, Fecha);
         }
-
-        private async void Editar(int IdAsis, string horai, string horaf, string fecha)
-        {
-            await Navigation.PushAsync(new EditarAsistencia(IdAsis, horai, horaf, fecha));
-        }
-        private async void btnHSalida_Clicked(object sender, EventArgs e)
-        {
-            //await Navigation.PushAsync(new EditarAsistencia(int IdAsis, string horai, string horaf, string fecha));
-        }
-
     }
 }

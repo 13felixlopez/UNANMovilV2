@@ -23,7 +23,7 @@
                 <!--Boton de Volver-->
                 <Frame Grid.Column="2" BackgroundColor="Transparent">
                     <Button Grid.Column="2" BackgroundColor="Transparent"
-                ImageSource="flecha_left2.png" x:Name="btnCerrar" Clicked="btnCerrar_Clicked"/>
+                ImageSource="Editar.png" x:Name="BtnEditar" Clicked="BtnEditar_Clicked"/>
                 </Frame>
             </Grid>
             <!--Contenedor de detalles-->
