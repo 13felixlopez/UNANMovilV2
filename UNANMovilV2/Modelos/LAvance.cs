@@ -14,5 +14,7 @@ namespace UNANMovilV2.Modelos
         public string Desfase { get; set; }
         public string UltimoTema { get; set; }
         public string TemasAtrasados { get; set; }
+        public string Grupo { get; set; }
+        public string Carrera { get; set; }
     }
 }

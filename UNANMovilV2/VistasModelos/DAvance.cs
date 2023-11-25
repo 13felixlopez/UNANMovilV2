@@ -10,9 +10,13 @@ namespace UNANMovilV2.VistasModelos
     public class DAvance
     {
         public string Cont;
-        public List<LAvance> MostrarAvance(int INSS)
+        public string carrera;
+        public string grupo;
+        public string desfase;
+        public string medidas;
+        public List<MAsignatura> MostrarAvance(int INSS)
         {
-            var lstProg = new List<LAvance>();
+            var lstProg = new List<MAsignatura>();
             try
             {
                 DataTable dt = new DataTable();
@@ -25,10 +29,16 @@ namespace UNANMovilV2.VistasModelos
                 da.Fill(dt);
                 foreach (DataRow rdr in dt.Rows)
                 {
-                    var parametros = new LAvance();
-                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString()).ToString("dd/MMM/yyyy");
+                    var parametros = new MAsignatura();
+                    parametros.IDAP = int.Parse(rdr["IdAvanceProgramatico"].ToString());
+                    parametros.IdAsig = int.Parse(rdr["IdAsignatura"].ToString());
+                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString());
                     parametros.Asignatura = rdr["Asignatura"].ToString();
+                    parametros.Desfase = rdr["Desfase"].ToString();
+                    parametros.Medidas = rdr["Medidas"].ToString();
                     lstProg.Add(parametros);
+                    desfase = parametros.Desfase;
+                    medidas = parametros.Medidas;
                 }
                 return lstProg;
             }
@@ -151,6 +161,35 @@ namespace UNANMovilV2.VistasModelos
             finally
             {
                 // Se cierra la conexión a la base de datos
+                Conexion.Cerrar();
+            }
+        }
+
+        public void MostrarCarreraGrupo(MAsignatura parametros, int INSS)
+        {
+            try
+            {
+                Conexion.Abrir();
+                SqlCommand da = new SqlCommand("MostrarCarreraGrupo", Conexion.conectar);
+                da.CommandType = CommandType.StoredProcedure;
+                da.Parameters.AddWithValue("@IdAsignatura", parametros.IdAsig);
+                da.Parameters.AddWithValue("@INSS", INSS);
+                SqlDataAdapter cb = new SqlDataAdapter(da);
+                DataTable dt = new DataTable();
+                cb.Fill(dt);
+                parametros.Carrera = dt.Rows[0]["Carrera"].ToString();
+                //carrera = dt.Rows[0]["Carrera"].ToString();
+                parametros.Grupo = dt.Rows[0]["Grupo"].ToString();
+                //grupo = dt.Rows[0]["Grupo"].ToString();
+                carrera = parametros.Carrera;
+                grupo = parametros.Grupo;
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+            }
+            finally
+            {
                 Conexion.Cerrar();
             }
         }

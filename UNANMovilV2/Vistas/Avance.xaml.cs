@@ -1,4 +1,5 @@
 ﻿using System;
+using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -71,5 +72,27 @@ namespace UNANMovilV2.Vistas
         {
             await Navigation.PushAsync(new AddAvanceP());
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var stackLayout = (StackLayout)sender;
+            if (stackLayout.BindingContext is MAsignatura AP)
+            {
+                // Puedes acceder a las propiedades de asignatura y hacer lo que necesites
+                var IdAP = AP.IDAP;
+                var Fecha = AP.Fecha;
+                var idasig = AP.IdAsig;
+                var Asignatura = AP.Asignatura;
+                var Medidas = AP.Medidas;
+                var Desfase = AP.Desfase;
+                MostrarDetalleAP(IdAP, idasig, Fecha, Asignatura,Desfase,Medidas);
+            }
+        }
+
+        private void MostrarDetalleAP(int idap,int idasig, DateTime fecha, string asignatura,string desfase,string medidas)
+        {
+            Navigation.PushAsync(new DetalleAP(idap, idasig, fecha, asignatura, desfase,medidas));
+        }
+
     }
 }

@@ -12,6 +12,7 @@ namespace UNANMovilV2.Modelos
         public int TotalHora { get; set; }
         public int INSS { get; set; }
         public int IdAsig { get; set; }
+        public int IDAP { get; set; }
         public int IdTema { get; set; }
         public int Varones { get; set; }
         public int Mujeres { get; set; }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
-using UNANMovilV2.Funciones;
 using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;

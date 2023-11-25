@@ -20,5 +20,10 @@
         public string Grupo { get; set; }
         public string Turno { get; set; }
         public string Asignatura { get; set; }
+        public int IDAP { get; set; }
+        public string Medidas { get; set; }
+        public string Desfase { get; set; }
+        public string UltimoTema { get; set; }
+        public string TemasAtrasados { get; set; }
     }
 }
