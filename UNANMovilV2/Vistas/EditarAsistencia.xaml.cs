@@ -53,16 +53,33 @@ namespace UNANMovilV2.Vistas
                 var Contenido = Asis.Contenido;
                 var Mujeres = Asis.Mujeres;
                 var Varones = Asis.Varones;
-                LAsistencia LstAsis = new LAsistencia
+                var Estado = Asis.Estado;
+                if (Estado=="Proceso")
                 {
-                    IdTema = IdAsig,
-                    Contenido = Contenido,
-                    Estado = "Finalizado"
-                };
-                stackLayout.IsEnabled = false;
-                datosList.Add(LstAsis);
-                Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
-                Datos.ItemsSource = datosList;
+                    LAsistencia LstAsis = new LAsistencia
+                    {
+                        IdTema = IdAsig,
+                        Contenido = Contenido,
+                        Estado = "Finalizado"
+                    };
+                    stackLayout.IsEnabled = false;
+                    datosList.Add(LstAsis);
+                    Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
+                    Datos.ItemsSource = datosList;
+                }
+                else
+                {
+                    LAsistencia LstAsis = new LAsistencia
+                    {
+                        IdTema = IdAsig,
+                        Contenido = Contenido,
+                        Estado = "Proceso"
+                    };
+                    stackLayout.IsEnabled = false;
+                    datosList.Add(LstAsis);
+                    Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
+                    Datos.ItemsSource = datosList;
+                }
             }
         }
     }

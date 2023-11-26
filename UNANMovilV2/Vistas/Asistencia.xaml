@@ -81,6 +81,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <!-- Contenedor del indicador del bloque -->
@@ -176,9 +177,26 @@
                                        />
                                 </Frame>
                             </Grid>
+                            <Grid Grid.Row="6" ColumnDefinitions="Auto,Auto,Auto,Auto" Margin="0,5,0,0">
+                                <Label Text="Mujeres inscritas:" TextColor="Black" 
+                                       FontSize="18" VerticalOptions="Center"
+                                       HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
+                                <Label Grid.Column="1" TextColor="Black" VerticalOptions="EndAndExpand"
+                                       FontSize="18" x:Name="LblMujeres" 
+                                       HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="Varones inscritos:" TextColor="Black" 
+                                       FontSize="18" VerticalOptions="Center"
+                                       HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
+
+                                <Label Grid.Column="3" TextColor="Black" VerticalOptions="EndAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="18" 
+                                       x:Name="LblVarones"
+                                       />
+                            </Grid>
 
                             <!-- Boton de agregar los datos del bloque -->
-                            <Button Grid.Row="7" Text="Agregar Bloque" TextColor="Black" 
+                            <Button Grid.Row="8" Text="Agregar Bloque" TextColor="Black" 
                                     BackgroundColor="Gray" FontSize="20"
                                     IsEnabled="False"
                                     HorizontalOptions="CenterAndExpand" 

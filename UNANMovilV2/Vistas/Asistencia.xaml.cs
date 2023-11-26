@@ -77,6 +77,9 @@ namespace UNANMovilV2.Vistas
                     string gr = lblGrupo.Text;
                     var data = funcion.MostrarContenidos(asignaturaSeleccionada.IdAsig, gr, Login.INSS);
                     PcContenido.ItemsSource = data;
+                    funcion.MostrarVaronesMujeres(asignaturaSeleccionada.IdAsig, Login.INSS);
+                    LblMujeres.Text = funcion.mujeres.ToString();
+                    LblVarones.Text = funcion.varones.ToString();
                 }
             }
         }
@@ -102,6 +105,47 @@ namespace UNANMovilV2.Vistas
         }
 
         private void BtnBloque_Clicked(object sender, EventArgs e)
+        {
+            Comprobar();
+        }
+        private void Comprobar()
+        {
+            if (validar2())
+            {
+                int mujerestxt, mujereslbl;
+                mujerestxt = int.Parse(TxtMujeres.Text);
+                mujereslbl = int.Parse(LblMujeres.Text);
+                int varonestxt, varoneslbl;
+                varonestxt = int.Parse(TxtVarones.Text);
+                varoneslbl = int.Parse(LblVarones.Text);
+                if (mujerestxt > mujereslbl || varonestxt > varoneslbl)
+                {
+                    DisplayAlert("Error", "La asistencia no puede ser mayor a la registrada", "OK");
+                    if (varonestxt > varoneslbl)
+                    {
+                        TxtVarones.BackgroundColor = Color.Red;
+                        TxtVarones.Text = "0";
+                    }
+                    else if (mujerestxt > mujereslbl)
+                    {
+                        TxtMujeres.BackgroundColor = Color.Red;
+                        TxtMujeres.Text = "0";
+                    }
+                }
+                else
+                {
+                    ADD();
+                    TxtVarones.BackgroundColor = Color.White;
+                    TxtMujeres.BackgroundColor = Color.White;
+                }
+            }
+            else
+            {
+                DisplayAlert("ERROR", "Debe de rellenar todos los campos", "OK");
+            }
+        }
+
+        private void ADD()
         {
             var asig = PcAsig.SelectedItem as MAsignatura;
             var Cont = PcContenido.SelectedItem as MAsignatura;
@@ -169,11 +213,21 @@ namespace UNANMovilV2.Vistas
             GuardarAsistencia();
         }
 
+        private void TxtMujeres_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TxtMujeres.Text != "" && TxtVarones.Text != "")
+            {
+                Activar();
+            }
+        }
         private void TxtVarones_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Activar();
+            if (TxtVarones.Text != "" && TxtMujeres.Text != "")
+            {
+                Activar();
+            }
+            
         }
-
         private void Activar()
         {
             if (TxtVarones.Text != "" && TxtMujeres.Text != "")
@@ -211,10 +265,6 @@ namespace UNANMovilV2.Vistas
             Dia = e.NewDate;
         }
 
-        private void TxtMujeres_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Activar();
-        }
 
         private bool validar2()
         {

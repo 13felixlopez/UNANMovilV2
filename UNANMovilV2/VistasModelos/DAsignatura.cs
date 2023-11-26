@@ -11,6 +11,31 @@ namespace UNANMovilV2.VistasModelos
     {
         public string carrera;
         public string grupo;
+        public int varones, mujeres;
+        public void MostrarVaronesMujeres(int IdAsignatura, int INSS)
+        {
+            try
+            {
+                Conexion.Abrir();
+                SqlCommand da = new SqlCommand("MostrarMV", Conexion.conectar);
+                da.CommandType = CommandType.StoredProcedure;
+                da.Parameters.AddWithValue("@IdAsignatura", IdAsignatura);
+                da.Parameters.AddWithValue("@INSS", INSS);
+                SqlDataAdapter cb = new SqlDataAdapter(da);
+                DataTable dt = new DataTable();
+                cb.Fill(dt);
+                mujeres = int.Parse(dt.Rows[0]["Mujeres"].ToString());
+                varones = int.Parse(dt.Rows[0]["Varones"].ToString());
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", "Ocurrió un error al cargar los datos", "OK");
+            }
+            finally
+            {
+                Conexion.Cerrar();
+            }
+        }
         public List<MAsignatura> MostrarAsignaturaPlan(int INSS)
         {
             var lstAsig = new List<MAsignatura>();
