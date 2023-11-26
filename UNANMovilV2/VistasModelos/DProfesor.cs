@@ -32,5 +32,19 @@ namespace UNANMovilV2.VistasModelos
             }
         }
         #endregion
+
+        public void ComprobarConexion(ref int Id)
+        {
+            try
+            {
+                Conexion.Abrir();
+                SqlCommand da = new SqlCommand("Select Top 1 INSS from Profesores", Conexion.conectar);
+                Id = Convert.ToInt32(da.ExecuteScalar());
+            }
+            catch (Exception)
+            {
+                Id = 0;
+            }
+        }
     }
 }

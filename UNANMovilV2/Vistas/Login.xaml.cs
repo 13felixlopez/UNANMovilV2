@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using UNANMovilV2.Modelos;
+using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,19 +15,41 @@ namespace UNANMovilV2.Vistas
         MProfes mprofes = new MProfes();
         NProfes nprofes = new NProfes();
         public static string nombreprofe;
-        //public static byte[] Icono;
         public static int idprofesor;
         public static string correo;
         public static string Tusuario;
         public static int INSS;
+        int IdUser = 0;
         public Login()
         {
-            InitializeComponent();
+            InitializeComponent();;
         }
 
-        private async void BtnIniciarSesion_Clicked(object sender, EventArgs e)
+        private async void ProbarConexion()
         {
-            await Logueo();
+            try
+            {
+                var funcion = new DProfesor();
+                funcion.ComprobarConexion(ref IdUser);
+            }
+            catch (Exception)
+            {
+                IdUser = 0;
+            }
+            if (IdUser > 0)
+            {
+                await Logueo();
+            }
+            else
+            {
+                await DisplayAlert("Sin conexión", "No se logró conectar al servidor", "OK");
+                Application.Current.MainPage = new ConexionIP();
+            }
+        }
+
+        private void BtnIniciarSesion_Clicked(object sender, EventArgs e)
+        {
+            ProbarConexion();
         }
 
         private async Task Logueo()
@@ -36,7 +60,6 @@ namespace UNANMovilV2.Vistas
             }
             else
             {
-
                 DataTable dt = new DataTable();
                 mprofes.INSS = int.Parse(txtINSS.Text);
                 mprofes.Password = Encrip.Encriptar(Encrip.Encriptar(txtPass.Text));

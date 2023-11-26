@@ -1,12 +1,16 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace UNANMovilV2.VistasModelos
 {
     public class Conexion
     {
-        //public static string conexion = ("Data Source= 192.168.246.84; Initial Catalog=UNAN1; Integrated Security=False;User=Dixon;Password=1311");
-        public static string conexion = ("Data Source=  192.168.203.84; Initial Catalog=UNAN1; Integrated Security=False;User=FelixL;Password=1316");
+        public static string ruta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "connection.txt");
+        public static string text=File.ReadAllText(ruta);
+        public static string conexion = text;
+
         public static SqlConnection conectar = new SqlConnection(conexion);
 
         public static void Abrir()
