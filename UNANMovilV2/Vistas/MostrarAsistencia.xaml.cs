@@ -9,12 +9,14 @@ namespace UNANMovilV2.Vistas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MostrarAsistencia : ContentPage
     {
-
+        DateTime fecha;
         public MostrarAsistencia()
         {
             InitializeComponent();
             VerAsistencia();
         }
+
+
         private async void btnAdd_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Asistencia());
@@ -26,6 +28,14 @@ namespace UNANMovilV2.Vistas
 
             var funcion = new DAsistencia();
             var data = funcion.MostrarAsistencia(INSS);
+            lstAsis.ItemsSource = data;
+        }
+        private void BuscarPorFecha()
+        {
+            int INSS = Login.INSS;
+
+            var funcion = new DAsistencia();
+            var data = funcion.BuscarAsistencia(INSS,fecha);
             lstAsis.ItemsSource = data;
         }
         protected override bool OnBackButtonPressed()
@@ -86,6 +96,13 @@ namespace UNANMovilV2.Vistas
         private void MostrarDetalle(int idAsis,string horai,string horaf,string fecha)
         {
             Navigation.PushAsync(new DetalleAsistencia(idAsis,horai,horaf,fecha));
+        }
+
+        private void DpFecha_DateSelected(object sender, DateChangedEventArgs e)
+        {
+
+            fecha = e.NewDate;
+            BuscarPorFecha();
         }
     }
 }

@@ -81,7 +81,7 @@ namespace UNANMovilV2.VistasModelos
 
                 cmd.Parameters.Add(parameterlst);
                 cmd.Parameters.AddWithValue("@INSS", parametros.INSS);
-                cmd.Parameters.AddWithValue("@Fecha", parametros.Fecha);
+                cmd.Parameters.AddWithValue("@Fecha", parametros.Fecha2);
                 cmd.Parameters.AddWithValue("@Bloques", parametros.Bloques);
                 cmd.Parameters.AddWithValue("@HoraI", parametros.HoraInicio);
                 cmd.Parameters.AddWithValue("@HoraF", parametros.HoraFin);
@@ -123,8 +123,8 @@ namespace UNANMovilV2.VistasModelos
                     parametros.Asignatura = item["Asignatura"].ToString();
                     parametros.Contenido = item["Contenido"].ToString();
                     parametros.Estado = item["Estado"].ToString();
-                    parametros.Mujeres = int.Parse(item["Mujeres"].ToString());
-                    parametros.Varones = int.Parse(item["Varones"].ToString());
+                    parametros.Mujeres = int.Parse(item["Mujeres Asistencia"].ToString());
+                    parametros.Varones = int.Parse(item["Mujeres Asistencia"].ToString());
                     LstAsis.Add(parametros);
                 }
                 return LstAsis;
@@ -179,6 +179,40 @@ namespace UNANMovilV2.VistasModelos
             {
                 Conexion.Cerrar();
             }
+        }
+
+        public List<LAsistencia> BuscarAsistencia(int INSS, DateTime fecha)
+        {
+            var LstAsis = new List<LAsistencia>();
+            try
+            {
+                DataTable dt = new DataTable();
+                // Se abre la conexión a la base de datos
+                Conexion.Abrir();
+
+                SqlDataAdapter da = new SqlDataAdapter("MostrarAsistenciaFecha", Conexion.conectar);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@INSS", INSS);
+                da.SelectCommand.Parameters.AddWithValue("@Fecha", fecha);
+                da.Fill(dt);
+                foreach (DataRow rdr in dt.Rows)
+                {
+                    var parametros = new LAsistencia();
+                    parametros.IdAsistencia = int.Parse(rdr["IdAsistencia"].ToString());
+                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString()).ToString("dd/MMM/yyyy");
+                    parametros.HoraInicio = DateTime.Parse(rdr["Hora de Entrada"].ToString()).ToString("HH:mm");
+                    parametros.HoraFin = DateTime.Parse(rdr["Hora de Salida"].ToString()).ToString("HH:mm");
+                    parametros.Bloques = int.Parse(rdr["Bloques"].ToString());
+                    LstAsis.Add(parametros);
+                }
+                return LstAsis;
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                return LstAsis;
+            }
+            finally { Conexion.Cerrar(); }
         }
     }
 }

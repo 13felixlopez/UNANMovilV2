@@ -32,7 +32,7 @@ namespace UNANMovilV2.VistasModelos
                     var parametros = new MAsignatura();
                     parametros.IDAP = int.Parse(rdr["IdAvanceProgramatico"].ToString());
                     parametros.IdAsig = int.Parse(rdr["IdAsignatura"].ToString());
-                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString());
+                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString()).ToString("dd/MMM/yyyy");
                     parametros.Asignatura = rdr["Asignatura"].ToString();
                     parametros.Desfase = rdr["Desfase"].ToString();
                     parametros.Medidas = rdr["Medidas"].ToString();
@@ -148,7 +148,7 @@ namespace UNANMovilV2.VistasModelos
                 cmd.Parameters.AddWithValue("@INSS", parametros.INSS);
                 cmd.Parameters.AddWithValue("@IdAsignatura", parametros.IdAsig);
                 cmd.Parameters.AddWithValue("@UltimoTema", parametros.UltimoTema);
-                cmd.Parameters.AddWithValue("@Fecha", parametros.Fecha);
+                cmd.Parameters.AddWithValue("@Fecha", parametros.Fecha2);
                 cmd.Parameters.AddWithValue("@Desfase", parametros.Desfase);
                 cmd.Parameters.AddWithValue("@Medidas", parametros.Medidas);
                 cmd.ExecuteNonQuery();
@@ -187,6 +187,46 @@ namespace UNANMovilV2.VistasModelos
             catch (Exception ex)
             {
                 Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+            }
+            finally
+            {
+                Conexion.Cerrar();
+            }
+        }
+
+        public List<MAsignatura> BuscarAp(int INSS,string buscador)
+        {
+            var lstProg = new List<MAsignatura>();
+            try
+            {
+                DataTable dt = new DataTable();
+                // Se abre la conexión a la base de datos
+                Conexion.Abrir();
+
+                SqlDataAdapter da = new SqlDataAdapter("BuscarAvaceProgramatico", Conexion.conectar);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@INSS", INSS);
+                da.SelectCommand.Parameters.AddWithValue("@Buscador", buscador);
+                da.Fill(dt);
+                foreach (DataRow rdr in dt.Rows)
+                {
+                    var parametros = new MAsignatura();
+                    parametros.IDAP = int.Parse(rdr["IdAvanceProgramatico"].ToString());
+                    parametros.IdAsig = int.Parse(rdr["IdAsignatura"].ToString());
+                    parametros.Fecha = DateTime.Parse(rdr["Fecha"].ToString()).ToString("dd/MMM/yyyy");
+                    parametros.Asignatura = rdr["Asignatura"].ToString();
+                    parametros.Desfase = rdr["Desfase"].ToString();
+                    parametros.Medidas = rdr["Medidas"].ToString();
+                    lstProg.Add(parametros);
+                    desfase = parametros.Desfase;
+                    medidas = parametros.Medidas;
+                }
+                return lstProg;
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                return lstProg;
             }
             finally
             {

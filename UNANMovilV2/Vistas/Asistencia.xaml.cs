@@ -304,7 +304,7 @@ namespace UNANMovilV2.Vistas
 
 
                 parametros.INSS = Login.INSS;
-                parametros.Fecha = DateTime.Parse(LblFecha.Text);
+                parametros.Fecha2 =DateTime.Parse(LblFecha.Text);
                 parametros.Bloques = int.Parse(nudBloque.Text);
                 parametros.HoraInicio = horaInicioFormateada.ToString();
                 parametros.HoraFin = horaFinFormateada.ToString();

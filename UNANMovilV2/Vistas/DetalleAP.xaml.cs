@@ -19,12 +19,11 @@ namespace UNANMovilV2.Vistas
             Navigation.PopAsync();
         }
 
-        public DetalleAP(int IdAp,int IdAsig,DateTime Fecha,string Asignatura,string Desfase,string Medidas)
+        public DetalleAP(int IdAp,int IdAsig,string Fecha,string Asignatura,string Desfase,string Medidas)
         {
             InitializeComponent();
             LblAsignatura.Text = Asignatura;
-            DateTime fecha=DateTime.Parse(Fecha.ToString("dd/MMM/yyyy"));
-            LblFecha.Text = fecha.ToString();
+            LblFecha.Text = Fecha;
             ID = IdAp;
             Idasig = IdAsig;
             var AP = new DAvance();

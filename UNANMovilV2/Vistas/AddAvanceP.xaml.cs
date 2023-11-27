@@ -91,7 +91,7 @@ namespace UNANMovilV2.Vistas
                 parametros.INSS = Login.INSS;
                 parametros.IdAsig = asignaturaSeleccionada.IdAsig; // Ajusta según tu lógica
                 parametros.UltimoTema = LblTema.Text;
-                parametros.Fecha = DateTime.Parse(LblFecha.Text); // Cambiado a Date para obtener solo la fecha, ajusta según tu lógica
+                parametros.Fecha2 = DateTime.Parse(LblFecha.Text);
                 parametros.Desfase = TxtDesfase.Text;
                 parametros.Medidas = TxtMedidas.Text;
 

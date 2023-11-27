@@ -19,6 +19,14 @@ namespace UNANMovilV2.Vistas
         {
             await Navigation.PopAsync();
         }
+        private void Buscador()
+        {
+            int INSS = Login.INSS;
+            string Busqueda = TxtBuscar.Text;
+            var funcion = new DAvance();
+            var data = funcion.BuscarAp(INSS,Busqueda);
+            lstProg.ItemsSource = data;
+        }
         private void MostrarAP()
         {
             int INSS = Login.INSS;
@@ -89,10 +97,14 @@ namespace UNANMovilV2.Vistas
             }
         }
 
-        private void MostrarDetalleAP(int idap,int idasig, DateTime fecha, string asignatura,string desfase,string medidas)
+        private void MostrarDetalleAP(int idap,int idasig, string fecha, string asignatura,string desfase,string medidas)
         {
             Navigation.PushAsync(new DetalleAP(idap, idasig, fecha, asignatura, desfase,medidas));
         }
 
+        private void TxtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Buscador();
+        }
     }
 }

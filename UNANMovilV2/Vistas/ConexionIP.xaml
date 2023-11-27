@@ -107,7 +107,7 @@
                 <Grid ColumnDefinitions="50,*" Grid.Row="4" Margin="0,10,0,-10">
                     <Image Source="send.png" Margin="10,0,-10,0"/>
                     <Button Grid.Column="1"
-                Text="Enviar"
+                Text="Conectar"
                 TextColor="green" Margin="20,0" 
                     CornerRadius="20" FontSize="18"
                 BackgroundColor="Wheat"

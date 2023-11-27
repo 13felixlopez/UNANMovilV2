@@ -33,11 +33,13 @@
                   BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" 
                   VerticalOptions="FillAndExpand" HeightRequest="100" 
                   WidthRequest="200" Margin="5,0,5,0">
-                <DatePicker VerticalOptions="Center" HorizontalOptions="Center" 
-                            TextColor="Black"
+                <Entry VerticalOptions="Center" HorizontalOptions="Center" 
+                            TextColor="Black" x:Name="TxtBuscar"
+                       TextChanged="TxtBuscar_TextChanged"
                             Margin="100,0,-60,0" FontAttributes="Bold" 
                             FontSize="Large" HeightRequest="150" 
-                            WidthRequest="160"/>
+                            WidthRequest="160"
+                       Placeholder="Buscar" PlaceholderColor="Gray"/>
                 <ImageButton Grid.Column="1" Source="Buscar.png" 
                              HorizontalOptions="Start"
                              Margin="40,0,0,0"
