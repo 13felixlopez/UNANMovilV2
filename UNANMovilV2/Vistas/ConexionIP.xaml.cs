@@ -25,11 +25,11 @@ namespace UNANMovilV2.Vistas
             parte2= ";Initial Catalog=" + TXTbasededatos.Text + ";Integrated Security=False;User Id=" + txtUsuario.Text + ";Password=" + txtPassword.Text + "";
             if (validar())
             {
+                probarconexion();
                 if (indicador_de_conexion=="HAY CONEXIÓN")
                 {
                     crear_archivo();
                     System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
-                probarconexion();
                 }
                 else
                 {

@@ -38,16 +38,7 @@
                        FontSize="18"
                        TextColor="WhiteSmoke" />
                     </Frame>
-                    <!-- Boton de Volver -->
-                    <Frame Grid.Column="2"
-                   HasShadow="False"
-                   BackgroundColor="Transparent">
-                        <Button Grid.Column="2"
-                        BackgroundColor="Transparent"
-                        ImageSource="flecha_left2.png"
-                        x:Name="btnCerrar"
-                         />
-                    </Frame>
+                    
                 </Grid>
 
             </Grid>
@@ -87,6 +78,7 @@
                            FontSize="20" FontAttributes="Bold"/>
                     <Frame Grid.Row="1" BorderColor="Black" Padding="1" Margin="20,0" CornerRadius="5">
                         <Entry Placeholder="Contraseña SQL" 
+                               IsPassword="True"
                                Margin="20,0" PlaceholderColor="Gray"
                                x:Name="txtPassword" TextColor="Black"
                                FontAttributes="Bold" HorizontalTextAlignment="Center">
@@ -104,9 +96,8 @@
                         </Entry>
                     </Frame>
                 </Grid>
-                <Grid ColumnDefinitions="50,*" Grid.Row="4" Margin="0,10,0,-10">
-                    <Image Source="send.png" Margin="10,0,-10,0"/>
-                    <Button Grid.Column="1"
+                <Grid ColumnDefinitions="*" Grid.Row="4" Margin="0,10,0,-10">
+                    <Button 
                 Text="Conectar"
                 TextColor="green" Margin="20,0" 
                     CornerRadius="20" FontSize="18"
