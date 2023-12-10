@@ -99,27 +99,26 @@
                                         Margin="10,0,0,0" FontAttributes="Bold" />
                                 <Frame Grid.Column="1"
                                        BorderColor="Black"
-                                       Padding="51,1,1,1"
-                                       Margin="-50,0,0,0">
+                                       Padding="60,10,10,10"
+                                       Margin="-50,0,5,0">
                                     <Picker Grid.Column="1" TextColor="Black" Title="Asignatura" Margin="-50,0,0,0"
                                         HorizontalTextAlignment="Center" TitleColor="Gray"  FontSize="18" 
-                                        x:Name="PcAsig" ItemDisplayBinding="{Binding Asignatura}" 
-                                        BackgroundColor="WhiteSmoke"
+                                        x:Name="PcAsig" ItemDisplayBinding="{Binding Asignatura}"
                                         SelectedIndexChanged="PcAsig_SelectedIndexChanged"/>
                                 </Frame>
                             </Grid>
 
                             <!-- Contenedor de carrera -->
-                            <Grid Grid.Row="2" ColumnDefinitions="Auto,*">
+                            <Grid Grid.Row="2" ColumnDefinitions="Auto,*" >
                                 <Label Text="Carrera:" TextColor="Black" FontSize="20" VerticalOptions="Center"
             HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
                                 <Frame Grid.Column="1"
-                                       BorderColor="Black"
-                                       Padding="1">
+                                       BorderColor="Black" HeightRequest="50"
+                                       Margin="0,0,5,0"
+                                       Padding="50,0,10,10" VerticalOptions="CenterAndExpand">
                                     <Label Grid.Column="1" Text="--" TextColor="Black" VerticalOptions="EndAndExpand"
                                         HorizontalTextAlignment="Center" FontSize="20" 
-                                       x:Name="LblCarrera" IsEnabled="False"
-                                        BackgroundColor="WhiteSmoke"/>
+                                       x:Name="LblCarrera" IsEnabled="False"/>
                                 </Frame>
                             </Grid>
 
@@ -128,10 +127,9 @@
                                 <Label Text="Grupo:" TextColor="Black" FontSize="20" VerticalOptions="Center"
                                        HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
                                 <Frame Grid.Column="1"
-                                       BorderColor="Black"
-                                       Padding="1">
+                                       BorderColor="Black" HeightRequest="50"
+                                       Padding="50,0,10,10" Margin="0,0,5,0">
                                     <Label Text="--" Grid.Column="1" TextColor="Black" VerticalOptions="EndAndExpand"
-                                       BackgroundColor="WhiteSmoke"
                                        HorizontalTextAlignment="Center" FontSize="20" x:Name="lblGrupo"/>
                                 </Frame>
                             </Grid>
@@ -142,10 +140,11 @@
                                        HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
                                 <Frame Grid.Column="1"
                                        BorderColor="Black"
-                                       Padding="1">
+                                       Padding="50,0,10,0" Margin="0,0,5,0">
                                     <Picker Grid.Column="1" TextColor="Black" Title="Contenidos" VerticalOptions="EndAndExpand"
                                         HorizontalTextAlignment="Center" TitleColor="Gray" FontSize="20" x:Name="PcContenido" 
-                                        ItemDisplayBinding="{Binding Contenido}" BackgroundColor="WhiteSmoke"/>
+                                        ItemDisplayBinding="{Binding Contenido}" 
+                                            Margin="3"/>
                                 </Frame>
                             </Grid>
 
@@ -268,7 +267,7 @@
                         <Button Text="Guardar" TextColor="Black" BackgroundColor="#0C7EF0" FontSize="20"
                                 FontAttributes="Bold" BorderColor="Gray" BorderWidth="2" CornerRadius="25"
                                 HorizontalOptions="CenterAndExpand"
-                                x:Name="BtnGuardar" 
+                                x:Name="BtnGuardar" IsEnabled="False"
                                 Clicked="BtnGuardar_Clicked"/>
                     </StackLayout>
         </Grid>

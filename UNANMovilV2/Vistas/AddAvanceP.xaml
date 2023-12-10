@@ -61,26 +61,26 @@
                             <Frame Grid.Column="1"
                            BorderColor="Black"
                            Padding="51,1,1,1"
-                           Margin="-50,0,0,0">
+                           Margin="-50,0,5,0">
                                 <Picker Grid.Column="1" TextColor="Black" Title="Asignatura" Margin="-50,0,0,0"
                             HorizontalTextAlignment="Center" TitleColor="Gray"  FontSize="18" 
                             x:Name="PcAsig" ItemDisplayBinding="{Binding Asignatura}" 
-                            BackgroundColor="WhiteSmoke"
                             SelectedIndexChanged="PcAsig_SelectedIndexChanged"/>
                             </Frame>
                         </Grid>
 
                         <!-- Contenedor de carrera -->
-                        <Grid Grid.Row="2" ColumnDefinitions="Auto,*">
+                        <Grid Grid.Row="2" ColumnDefinitions="*,Auto"  Margin="0,0,0,5" Padding="0,-5,0,0">
                             <Label Text="Carrera:" TextColor="Black" FontSize="20" VerticalOptions="Center"
-                                   HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
+                                    FontAttributes="Bold" Margin="10,0,0,0" />
                             <Frame Grid.Column="1"
-                           BorderColor="Black"
-                           Padding="1">
+                           BorderColor="Black" Margin="-5,0,5,0"
+                                   Padding="51,10"
+                                   >
                                 <Label Grid.Column="1" Text="--" TextColor="Black" VerticalOptions="EndAndExpand"
-                            HorizontalTextAlignment="Center" FontSize="20" 
+                            HorizontalTextAlignment="Center" FontSize="20"
                            x:Name="LblCarrera" IsEnabled="False"
-                            BackgroundColor="WhiteSmoke"/>
+                            />
                             </Frame>
                         </Grid>
 
@@ -89,11 +89,10 @@
                             <Label Text="Grupo:" TextColor="Black" FontSize="20" VerticalOptions="Center"
                            HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
                             <Frame Grid.Column="1"
-                           BorderColor="Black"
-                           Padding="1">
+                           BorderColor="Black" Margin="0,0,5,0"
+                           Padding="51,10">
                                 <Label Text="--" Grid.Column="1" TextColor="Black" VerticalOptions="EndAndExpand"
-                           BackgroundColor="WhiteSmoke"
-                           HorizontalTextAlignment="Center" FontSize="20" x:Name="lblGrupo"/>
+                                        HorizontalTextAlignment="Center" FontSize="20" x:Name="lblGrupo"/>
                             </Frame>
                         </Grid>
                         <!--Ultimo tema-->
@@ -101,10 +100,9 @@
                             <Label Text="Último tema:" TextColor="Black" FontSize="20" VerticalOptions="Center"
                            HorizontalOptions="End" FontAttributes="Bold" Margin="10,0,0,0" />
                             <Frame Grid.Column="1"
-                           BorderColor="Black"
-                           Padding="1">
+                           BorderColor="Black" Margin="0,0,5,0"
+                           Padding="51,10">
                                 <Label Text="--" Grid.Column="1" TextColor="Black" VerticalOptions="EndAndExpand"
-                           BackgroundColor="WhiteSmoke"
                            HorizontalTextAlignment="Center" FontSize="20" x:Name="LblTema"/>
                             </Frame>
                         </Grid>

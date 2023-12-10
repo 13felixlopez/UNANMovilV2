@@ -21,6 +21,7 @@ namespace UNANMovilV2.Vistas
             MostrarAsignaturaTurno();
             LblFecha.Text = DateTime.Now.ToString("dd/MMM/yyyy");
             Activar();
+            BtnGuardar.IsEnabled = false;
         }
 
         private async void btnCerrar_Clicked(object sender, EventArgs e)

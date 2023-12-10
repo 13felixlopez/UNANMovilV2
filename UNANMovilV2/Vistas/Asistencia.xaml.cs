@@ -185,6 +185,7 @@ namespace UNANMovilV2.Vistas
             {
                 contenedor.IsEnabled = false;
                 contenedor.BackgroundColor = Color.FromHex("#b5b5b5");
+                BtnGuardar.IsEnabled = true;
             }
         }
 

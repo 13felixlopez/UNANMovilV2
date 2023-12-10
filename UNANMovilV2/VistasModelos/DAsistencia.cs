@@ -169,7 +169,7 @@ namespace UNANMovilV2.VistasModelos
                 cmd.Parameters.Add(parameterlst);
                 cmd.Parameters.AddWithValue("@IdAsistencia", IdAsistencia);
                 cmd.ExecuteReader();
-               Application.Current.MainPage.DisplayAlert("Asistencia Esitada","Asistencia Guardada", "OK");
+               Application.Current.MainPage.DisplayAlert("Asistencia Editada","Asistencia Guardada", "OK");
             }
             catch (Exception ex)
             {
