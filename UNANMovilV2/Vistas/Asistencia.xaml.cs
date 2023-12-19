@@ -118,7 +118,21 @@ namespace UNANMovilV2.Vistas
                 int varonestxt, varoneslbl;
                 varonestxt = int.Parse(TxtVarones.Text);
                 varoneslbl = int.Parse(LblVarones.Text);
-                if (mujerestxt > mujereslbl || varonestxt > varoneslbl)
+                if (mujerestxt < 0 || varonestxt < 0) 
+                {
+                    DisplayAlert("ERROR", "La cantidad insertada no puede ser menor a 0", "OK");
+                    if(varonestxt < 0)
+                    {
+                        TxtVarones.BackgroundColor = Color.Red;
+                        TxtVarones.Text = "0";
+                    }
+                    else if (mujerestxt < 0)
+                    {
+                        TxtMujeres.BackgroundColor = Color.Red;
+                        TxtMujeres.Text = "0";
+                    }
+                }
+                else if (mujerestxt > mujereslbl || varonestxt > varoneslbl)
                 {
                     DisplayAlert("Error", "La asistencia no puede ser mayor a la registrada", "OK");
                     if (varonestxt > varoneslbl)
