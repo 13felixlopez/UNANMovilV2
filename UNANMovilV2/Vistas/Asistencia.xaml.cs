@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UNANMovilV2.Modelos;
 using UNANMovilV2.VistasModelos;
 using Xamarin.Forms;
@@ -14,7 +15,7 @@ namespace UNANMovilV2.Vistas
         private DAsignatura Asignatura;
         MModalidades mod = new MModalidades();
         int INSS = Login.INSS;
-        int idAsignatura, cant, i, j;
+        int idAsignatura, cant=4, i=1, j=1;
         MAsignatura asignaturaSeleccionada;
         MAsignatura Idcont;
         private TimeSpan hora;
@@ -29,22 +30,22 @@ namespace UNANMovilV2.Vistas
             LblFecha.Text = DateTime.Now.ToString("dd/MMM/yyyy");
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
 
-            // Suscribir al evento PropertyChanged del TimePicker
-            TPHoraE.PropertyChanged += TPHoraE_PropertyChanged;
+        //    // Suscribir al evento PropertyChanged del TimePicker
+        //    TPHoraE.PropertyChanged += TPHoraE_PropertyChanged;
 
-        }
+        //}
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
+        //protected override void OnDisappearing()
+        //{
+        //    base.OnDisappearing();
 
-            // Desuscribir del evento PropertyChanged del TimePicker
-            TPHoraE.PropertyChanged -= TPHoraE_PropertyChanged;
-        }
+        //    // Desuscribir del evento PropertyChanged del TimePicker
+        //    TPHoraE.PropertyChanged -= TPHoraE_PropertyChanged;
+        //}
 
         private async void btnCerrar_Clicked(object sender, EventArgs e)
         {
@@ -74,35 +75,39 @@ namespace UNANMovilV2.Vistas
                     // Mostrar la carrera en la etiqueta LblCarrera
                     LblCarrera.Text = funcion.carrera;
                     lblGrupo.Text = funcion.grupo;
+                    LblTurno.Text = funcion.turno;
                     string gr = lblGrupo.Text;
+                    string tr = LblTurno.Text;
                     var data = funcion.MostrarContenidos(asignaturaSeleccionada.IdAsig, gr, Login.INSS);
                     PcContenido.ItemsSource = data;
                     funcion.MostrarVaronesMujeres(asignaturaSeleccionada.IdAsig, Login.INSS);
                     LblMujeres.Text = funcion.mujeres.ToString();
                     LblVarones.Text = funcion.varones.ToString();
+                    var bl = funcion.MostrarBloquesCombo(tr);
+                    PcBloque.ItemsSource = bl;
                 }
             }
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            if (!validar())
-            {
-                DisplayAlert("ERROR", "Los bloques no pueden tener un valor menor a 1", "OK");
-                nudBloque.Text = "1";
-            }
-            else
-            {
-                cant = int.Parse(nudBloque.Text.ToString());
-                entrada.IsEnabled = false;
-                contenedor.IsEnabled = true;
-                contenedor.BackgroundColor = Color.White;
-                entrada.BackgroundColor = Color.FromHex("#b5b5b5");
-                BtnAgregar.BackgroundColor = Color.Gray;
-                j = 1;
-                LblNum.Text = j.ToString();
-            }
-        }
+        //private void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    if (!validar())
+        //    {
+        //        DisplayAlert("ERROR", "Los bloques no pueden tener un valor menor a 1", "OK");
+        //        nudBloque.Text = "1";
+        //    }
+        //    else
+        //    {
+        //        cant = int.Parse(nudBloque.Text.ToString());
+        //        entrada.IsEnabled = false;
+        //        contenedor.IsEnabled = true;
+        //        contenedor.BackgroundColor = Color.White;
+        //        entrada.BackgroundColor = Color.FromHex("#b5b5b5");
+        //        BtnAgregar.BackgroundColor = Color.Gray;
+        //        j = 1;
+        //        LblNum.Text = j.ToString();
+        //    }
+        //}
 
         private void BtnBloque_Clicked(object sender, EventArgs e)
         {
@@ -161,47 +166,73 @@ namespace UNANMovilV2.Vistas
 
         private void ADD()
         {
-            var asig = PcAsig.SelectedItem as MAsignatura;
-            var Cont = PcContenido.SelectedItem as MAsignatura;
-            i++;
-            if (i <= cant)
+            try
             {
-                if (validar2())
-                {
-                    // Crea un objeto MAsignatura con el elemento seleccionado
-                    MAsignatura LstAsis = new MAsignatura
-                    {
-                        IdAsig = asignaturaSeleccionada.IdAsig,
-                        Asignatura = asig.Asignatura,
-                        Carrera = LblCarrera.Text,
-                        Grupo = lblGrupo.Text,
-                        Contenido = Cont.Contenido,
-                        Mujeres = int.Parse(TxtMujeres.Text),
-                        Varones = int.Parse(TxtVarones.Text),
-                        IdTema = Cont.IdTema
-                    };
+                MAsignatura nuevaAsignatura;
+                var asig = PcAsig.SelectedItem as MAsignatura;
+                var contenido = PcContenido.SelectedItem as MAsignatura;
+                var bloque = PcBloque.SelectedItem as MAsignatura;
 
-                    // Agrega el nuevo objeto a la lista global
-                    datosList.Add(LstAsis);
-                    // Actualiza la fuente de datos del ListView
-                    Datos.ItemsSource = null; // Primero, limpia la fuente de datos existente
-                    Datos.ItemsSource = datosList; // Luego, asigna la lista actualizada
-                    limpiar();
-                    j++;
-                    LblNum.Text = j.ToString();
-                }
-                else
+                i++;
+                if (i <= cant)
                 {
-                    DisplayAlert("ERROR", "Debe de rellenar todos los campos", "OK");
+                    if (validar2())
+                    {
+                        // Crea un objeto MAsignatura con el elemento seleccionado
+                        nuevaAsignatura = new MAsignatura
+                        {
+                            IdAsig = asignaturaSeleccionada.IdAsig,
+                            Asignatura = asig.Asignatura,
+                            Carrera = LblCarrera.Text,
+                            Grupo = lblGrupo.Text,
+                            Contenido = contenido.Contenido,
+                            Mujeres = int.Parse(TxtMujeres.Text),
+                            Varones = int.Parse(TxtVarones.Text),
+                            IdTema = contenido.IdTema,
+                            Bloque = bloque.Bloque
+                        };
+
+                        // Verificar si ya existe el bloque en la lista
+                        bool bloqueExistente = datosList.Any(a => a.Bloque == nuevaAsignatura.Bloque);
+
+                        if (!bloqueExistente)
+                        {
+                            // Agrega el nuevo objeto a la lista global
+                            datosList.Add(nuevaAsignatura);
+
+                            // Actualiza la fuente de datos del ListView
+                            Datos.ItemsSource = null; // Limpia la fuente de datos existente
+                            Datos.ItemsSource = datosList; // Asigna la lista actualizada
+
+                            limpiar();
+                            j++;
+                            LblNum.Text = j.ToString();
+                            BtnGuardar.IsEnabled = true;
+                        }
+                        else
+                        {
+                            DisplayAlert("ERROR", "El bloque ya está ocupado.", "OK");
+                        }
+                    }
+                    else
+                    {
+                        DisplayAlert("ERROR", "Debe de rellenar todos los campos", "OK");
+                    }
+                }
+
+                if (i == cant)
+                {
+                    contenedor.IsEnabled = false;
+                    contenedor.BackgroundColor = Color.FromHex("#b5b5b5");
+                    BtnBloque.BackgroundColor = Color.FromHex("#b5b5b5");
                 }
             }
-            if (i == cant)
+            catch (Exception ex)
             {
-                contenedor.IsEnabled = false;
-                contenedor.BackgroundColor = Color.FromHex("#b5b5b5");
-                BtnGuardar.IsEnabled = true;
+                DisplayAlert("ERROR", ex.Message, "OK");
             }
         }
+
 
         private void limpiar()
         {
@@ -211,17 +242,18 @@ namespace UNANMovilV2.Vistas
             LblCarrera.Text = "--";
             TxtMujeres.Text = "";
             TxtVarones.Text = "";
+            PcBloque.SelectedItem = null;
         }
 
-        private bool validar()
-        {
-            double entero;
-            if (!double.TryParse(nudBloque.Text, out entero))
-            {
-                return false;
-            }
-            return !(nudBloque.Text == "");
-        }
+        //private bool validar()
+        //{
+        //    double entero;
+        //    //if (!double.TryParse(nudBloque.Text, out entero))
+        //    //{
+        //    //    return false;
+        //    //}
+        //    //return !(nudBloque.Text == "");
+        //}
 
         private void BtnGuardar_Clicked(object sender, EventArgs e)
         {
@@ -288,7 +320,8 @@ namespace UNANMovilV2.Vistas
             {
                 return false;
             }
-            return !(TxtMujeres.Text == "" || TxtVarones.Text == "");
+            return !(TxtMujeres.Text == "" || TxtVarones.Text == "" || PcContenido.SelectedItem == null ||
+                PcBloque.SelectedItem == null);
         }
 
         private async void GuardarAsistencia()
@@ -306,24 +339,26 @@ namespace UNANMovilV2.Vistas
                         oConcepto.IdTema = asignatura.IdTema;
                         oConcepto.Mujeres = asignatura.Mujeres;
                         oConcepto.Varones = asignatura.Varones;
+                        oConcepto.Bloque = asignatura.Bloque;
                         lst.Add(oConcepto);
                     }
                 }
 
                 MAsignatura parametros = new MAsignatura();
-                DateTime HoraE = DateTime.Parse(hora.ToString());
-                int bloques = int.Parse(nudBloque.Text);
-                DateTime HoraF = HoraE.AddMinutes(bloques * 80);
-                string horaInicioFormateada = HoraE.ToString("HH:mm");
-                string horaFinFormateada = HoraF.ToString("HH:mm");
+                //DateTime HoraE = DateTime.Parse(hora.ToString());
+                //int bloques = int.Parse(nudBloque.Text);
+                //DateTime HoraF = HoraE.AddMinutes(bloques * 80);
+                //string horaInicioFormateada = HoraE.ToString("HH:mm");
+                //string horaFinFormateada = HoraF.ToString("HH:mm");
 
 
                 parametros.INSS = Login.INSS;
-                parametros.Fecha2 =DateTime.Parse(LblFecha.Text);
-                parametros.Bloques = int.Parse(nudBloque.Text);
-                parametros.HoraInicio = horaInicioFormateada.ToString();
-                parametros.HoraFin = horaFinFormateada.ToString();
-                parametros.Observacion = "Esto es una Asistencia";
+                parametros.Fecha2 = DateTime.Parse(LblFecha.Text);
+                parametros.Bloques = datosList.Count;
+                //parametros.Bloques = int.Parse(nudBloque.Text);
+                //parametros.HoraInicio = horaInicioFormateada.ToString();
+                //parametros.HoraFin = horaFinFormateada.ToString();
+                //parametros.Observacion = "Esto es una Asistencia";
 
                 DAsistencia funcion = new DAsistencia();
                 funcion.Insertaasistencias(parametros, lst);

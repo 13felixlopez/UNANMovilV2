@@ -17,6 +17,7 @@ namespace UNANMovilV2.Modelos
         public int Varones { get; set; }
         public int Mujeres { get; set; }
         public string Fecha { get; set; }
+        public string Bloque { get; set; }
         public DateTime Fecha2 { get; set; }
         public int Bloques { get; set; }
         public string HoraInicio { get; set; }
